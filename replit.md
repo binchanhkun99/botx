@@ -1,10 +1,32 @@
 # Trading Dashboard - AI TradeBot
 
+## Recent Updates (October 29, 2025)
+### 🎨 New Gradient Color Scheme
+- Updated primary colors to gradient: `linear-gradient(90deg, #5C4735 0%, #D89A55 100%)`
+- All active buttons in sidebar now use the brown-to-gold gradient
+- Win Rate circular progress indicator uses gradient stroke
+- All main action buttons styled with gradient backgrounds and hover effects
+
+### 🔧 New Bot Configuration Page
+- **Exchange Selection**: Choose from OKX, Bybit, or Binance with visual cards
+- **API Credentials Form**: Secure input fields for API Key, Secret Key, and Passphrase (OKX only)
+- **Password Visibility Toggle**: Eye icons to show/hide sensitive credentials
+- **AI Model Selection**: Choose from 6 AI models (DeepSeek, Qwen, Claude, GPT-4, Gemini, Grok)
+- **Visual Feedback**: Gradient borders and animations on selected items
+- **Security Warnings**: User-friendly security notices about API permissions
+
+### 💫 Enhanced Button Styling
+- Gradient backgrounds with hover effects
+- Transform and scale animations on hover
+- Shadow effects for depth
+- Color-coded quick action buttons (green for buy, red for sell)
+
 ## Overview
 A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript, and Tailwind CSS. This application provides a comprehensive interface for monitoring trading activities, bot configuration, portfolio performance, and market analytics.
 
 ## Project Information
 - **Created**: October 29, 2025
+- **Last Updated**: October 29, 2025 (Gradient update + Bot Config page)
 - **Framework**: Vue.js 3 with Composition API
 - **Styling**: Tailwind CSS 3
 - **Charts**: ApexCharts (vue3-apexcharts)
@@ -69,9 +91,10 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 trading-dashboard/
 ├── src/
 │   ├── components/
-│   │   ├── Sidebar.vue              # Left navigation sidebar
+│   │   ├── Sidebar.vue              # Left navigation sidebar with gradient buttons
 │   │   ├── Header.vue               # Top header with balance
 │   │   ├── Dashboard.vue            # Main dashboard layout
+│   │   ├── BotConfigPage.vue        # NEW: Bot configuration page
 │   │   ├── StatsCards.vue           # Statistics cards grid
 │   │   ├── BotConfig.vue            # Bot configuration panel
 │   │   ├── PortfolioChart.vue       # Portfolio performance chart
@@ -91,7 +114,9 @@ trading-dashboard/
 - **Background**: #0f111a (dark-bg)
 - **Card Background**: #1a1d29 (dark-card)
 - **Lighter Accents**: #252836 (dark-lighter)
-- **Primary/Orange**: #f59e0b (primary)
+- **Primary Gradient**: linear-gradient(90deg, #5C4735 0%, #D89A55 100%)
+  - Start: #5C4735 (dark brown)
+  - End: #D89A55 (golden)
 - **Success/Green**: #10b981 (green-profit)
 - **Danger/Red**: #ef4444 (red-loss)
 - **Text**: #e5e7eb (light gray)

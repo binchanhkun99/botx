@@ -81,9 +81,8 @@ const aiModels = [
 ]
 
 const handleSaveCredentials = () => {
-  console.log('Saving credentials for:', selectedExchange.value)
-  console.log('Credentials:', credentials.value)
-  alert('Cấu hình đã được lưu! (Demo mode)')
+  alert(`✅ Cấu hình ${exchanges.find(e => e.id === selectedExchange.value)?.name} đã được lưu thành công!\n\nLưu ý: Đây là chế độ demo. Trong production, dữ liệu sẽ được mã hóa và lưu trữ an toàn.`)
+  credentials.value = { apiKey: '', secretKey: '', passphrase: '' }
 }
 </script>
 
