@@ -41,7 +41,7 @@ const chartOptions = ref({
       stops: [0, 90, 100]
     }
   },
-  colors: ['#f59e0b', '#10b981'],
+  colors: ['#D89A55', '#10b981'],
   xaxis: {
     categories: ['Th2', '', '', 'Th4', '', '', 'Th6', '', '', 'CN'],
     labels: {
@@ -98,9 +98,9 @@ const chartOptions = ref({
         Hiệu suất Portfolio
       </h3>
       <div class="flex gap-2">
-        <button class="px-3 py-1 bg-primary text-white text-xs rounded-lg">7D</button>
-        <button class="px-3 py-1 bg-dark-lighter text-gray-400 text-xs rounded-lg">30D</button>
-        <button class="px-3 py-1 bg-dark-lighter text-gray-400 text-xs rounded-lg">90D</button>
+        <button class="px-3 py-1.5 bg-gradient-primary text-white text-xs font-semibold rounded-lg shadow-md transition-all">7D</button>
+        <button class="px-3 py-1.5 bg-dark-lighter text-gray-400 text-xs font-medium rounded-lg hover:bg-gradient-primary hover:text-white transition-all">30D</button>
+        <button class="px-3 py-1.5 bg-dark-lighter text-gray-400 text-xs font-medium rounded-lg hover:bg-gradient-primary hover:text-white transition-all">90D</button>
       </div>
     </div>
     

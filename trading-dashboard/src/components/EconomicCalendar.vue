@@ -64,28 +64,28 @@ const quickActions = [
     <div class="mt-6 pt-6 border-t border-dark-lighter">
       <h4 class="text-sm font-semibold text-white mb-4">THAO TÁC NHANH</h4>
       <div class="grid grid-cols-2 gap-3">
-        <button class="flex flex-col items-center gap-2 p-3 bg-dark-lighter hover:bg-dark-bg rounded-lg transition-all group">
-          <div class="w-8 h-8 bg-green-profit/20 rounded-lg flex items-center justify-center group-hover:bg-green-profit/30 transition-all">
-            <span class="text-green-profit text-lg">↑</span>
+        <button class="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/30 rounded-xl transition-all transform hover:scale-105 group">
+          <div class="w-10 h-10 bg-green-profit/30 rounded-lg flex items-center justify-center group-hover:bg-green-profit/40 transition-all shadow-lg">
+            <span class="text-green-profit text-xl font-bold">↑</span>
           </div>
-          <span class="text-xs text-gray-300">Mua nhanh</span>
+          <span class="text-xs text-gray-200 font-medium">Mua nhanh</span>
         </button>
-        <button class="flex flex-col items-center gap-2 p-3 bg-dark-lighter hover:bg-dark-bg rounded-lg transition-all group">
-          <div class="w-8 h-8 bg-red-loss/20 rounded-lg flex items-center justify-center group-hover:bg-red-loss/30 transition-all">
-            <span class="text-red-loss text-lg">↓</span>
+        <button class="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-red-600/20 to-red-500/10 hover:from-red-600/30 hover:to-red-500/20 border border-red-500/30 rounded-xl transition-all transform hover:scale-105 group">
+          <div class="w-10 h-10 bg-red-loss/30 rounded-lg flex items-center justify-center group-hover:bg-red-loss/40 transition-all shadow-lg">
+            <span class="text-red-loss text-xl font-bold">↓</span>
           </div>
-          <span class="text-xs text-gray-300">Bán nhanh</span>
+          <span class="text-xs text-gray-200 font-medium">Bán nhanh</span>
         </button>
       </div>
 
       <div class="grid grid-cols-2 gap-3 mt-3">
-        <button class="flex flex-col items-center gap-2 p-3 bg-dark-lighter hover:bg-dark-bg rounded-lg transition-all">
+        <button class="flex flex-col items-center gap-2 p-3 bg-dark-lighter hover:bg-gradient-primary border border-dark-lighter hover:border-primary/50 rounded-xl transition-all transform hover:scale-105">
           <span class="text-2xl">📊</span>
-          <span class="text-xs text-gray-300">Đóng tất cả</span>
+          <span class="text-xs text-gray-300 font-medium">Đóng tất cả</span>
         </button>
-        <button class="flex flex-col items-center gap-2 p-3 bg-dark-lighter hover:bg-dark-bg rounded-lg transition-all">
+        <button class="flex flex-col items-center gap-2 p-3 bg-dark-lighter hover:bg-gradient-to-br hover:from-red-600 hover:to-orange-500 border border-dark-lighter hover:border-red-500/50 rounded-xl transition-all transform hover:scale-105">
           <span class="text-2xl">⚡</span>
-          <span class="text-xs text-gray-300">Đóng khẩn cấp</span>
+          <span class="text-xs text-gray-300 font-medium">Đóng khẩn cấp</span>
         </button>
       </div>
     </div>

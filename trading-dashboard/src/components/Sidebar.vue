@@ -33,11 +33,11 @@ const menuItems = [
       <button
         v-for="item in menuItems"
         :key="item.id"
-        @click="activeMenu = item.id"
+        @click="activeMenu = item.id; $emit('menu-change', item.id)"
         :class="[
           'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
           activeMenu === item.id 
-            ? 'bg-primary text-white' 
+            ? 'bg-gradient-primary text-white shadow-lg' 
             : 'text-gray-400 hover:bg-dark-lighter hover:text-white'
         ]"
       >
@@ -65,11 +65,17 @@ const menuItems = [
               r="40"
               :stroke-dasharray="251"
               :stroke-dashoffset="251 - (251 * winRate) / 100"
-              stroke="#f59e0b"
+              stroke="url(#gradient)"
               stroke-width="8"
               fill="none"
               class="transition-all duration-1000"
             />
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#5C4735;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#D89A55;stop-opacity:1" />
+              </linearGradient>
+            </defs>
           </svg>
           <div class="absolute inset-0 flex items-center justify-center">
             <span class="text-2xl font-bold text-white">{{ winRate }}%</span>
