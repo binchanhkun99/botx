@@ -35,8 +35,8 @@ const toggleLanguageMenu = () => {
   showLanguageMenu.value = !showLanguageMenu.value
 }
 
-const setLanguage = (lang: string) => {
-  changeLocale(lang)
+const setLanguage = async (lang: string) => {
+  await changeLocale(lang)
   showLanguageMenu.value = false
   showDropdown.value = false
 }

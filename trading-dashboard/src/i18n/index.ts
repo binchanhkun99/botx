@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+import { nextTick } from 'vue'
 import vi from './locales/vi'
 import en from './locales/en'
 
@@ -32,8 +33,11 @@ const i18n = createI18n({
 
 export default i18n
 
-// Helper function to change locale
-export const changeLocale = (locale: string) => {
+// Helper function to change locale with proper synchronization
+export const changeLocale = async (locale: string) => {
   i18n.global.locale.value = locale
+  // Wait for Vue to process the locale change
+  await nextTick()
+  // Now persist to localStorage after reactivity updates
   localStorage.setItem('locale', locale)
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Shield, Eye, EyeOff } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
@@ -17,74 +17,74 @@ const credentials = ref({
   passphrase: ''
 })
 
-const exchanges = [
+const exchanges = computed(() => [
   {
     id: 'okx',
     name: 'OKX',
-    description: 'Sàn giao dịch hàng đầu thế giới',
+    description: t('botConfig.exchanges.okx'),
     icon: '🟢'
   },
   {
     id: 'bybit',
     name: 'Bybit',
-    description: 'Nền tảng derivatives uy tín',
+    description: t('botConfig.exchanges.bybit'),
     icon: '🟡'
   },
   {
     id: 'binance',
     name: 'Binance',
-    description: 'Sàn giao dịch lớn nhất',
+    description: t('botConfig.exchanges.binance'),
     icon: '🟠'
   }
-]
+])
 
-const aiModels = [
+const aiModels = computed(() => [
   {
     id: 'deepseek',
     name: 'DeepSeek',
-    description: 'AI mạnh mẽ từ Trung Quốc',
+    description: t('botConfig.aiModels.deepseek'),
     icon: '🔷',
     color: 'from-blue-600 to-blue-400'
   },
   {
     id: 'qwen',
     name: 'Qwen',
-    description: 'Alibaba Cloud AI',
+    description: t('botConfig.aiModels.qwen'),
     icon: '🟣',
     color: 'from-purple-600 to-purple-400'
   },
   {
     id: 'claude',
     name: 'Claude',
-    description: 'Anthropic AI Assistant',
+    description: t('botConfig.aiModels.claude'),
     icon: '🟤',
     color: 'from-amber-600 to-amber-400'
   },
   {
     id: 'gpt',
     name: 'GPT-4',
-    description: 'OpenAI ChatGPT',
+    description: t('botConfig.aiModels.gpt'),
     icon: '🟢',
     color: 'from-green-600 to-green-400'
   },
   {
     id: 'gemini',
     name: 'Gemini',
-    description: 'Google AI',
+    description: t('botConfig.aiModels.gemini'),
     icon: '🔵',
     color: 'from-blue-500 to-cyan-400'
   },
   {
     id: 'grok',
     name: 'Grok',
-    description: 'xAI Model',
+    description: t('botConfig.aiModels.grok'),
     icon: '⚡',
     color: 'from-orange-600 to-red-400'
   }
-]
+])
 
 const handleSaveCredentials = () => {
-  const exchangeName = exchanges.find(e => e.id === selectedExchange.value)?.name
+  const exchangeName = exchanges.value.find(e => e.id === selectedExchange.value)?.name
   alert(t('botConfig.saveSuccess', { exchange: exchangeName }))
   credentials.value = { apiKey: '', secretKey: '', passphrase: '' }
 }
@@ -174,7 +174,7 @@ const handleSaveCredentials = () => {
           <div>
             <label class="block text-sm font-medium text-gray-300 mb-2">
               {{ t('botConfig.passphrase') }}
-              <span class="text-gray-500 text-xs ml-1">(Chỉ cần cho OKX)</span>
+              <span class="text-gray-500 text-xs ml-1">({{ t('botConfig.passphraseHint') }})</span>
             </label>
             <div class="relative">
               <input
@@ -200,7 +200,7 @@ const handleSaveCredentials = () => {
               <span class="text-lg">⚠️</span>
               <span>
                 <strong>{{ t('botConfig.securityNote') }}:</strong> {{ t('botConfig.securityMessage') }} 
-                Không chia sẻ thông tin này với bất kỳ ai. Đảm bảo API chỉ có quyền trading, không cho phép withdrawal.
+                {{ t('botConfig.securityWarning') }}
               </span>
             </p>
           </div>
@@ -251,8 +251,8 @@ const handleSaveCredentials = () => {
             <span class="text-2xl">✅</span>
           </div>
           <div>
-            <h4 class="text-lg font-bold text-white">Sẵn sàng trading!</h4>
-            <p class="text-sm text-gray-400">Bạn đã chọn {{ exchanges.find(e => e.id === selectedExchange)?.name }} + {{ aiModels.find(a => a.id === selectedAI)?.name }}</p>
+            <h4 class="text-lg font-bold text-white">{{ t('botConfig.readyTitle') }}</h4>
+            <p class="text-sm text-gray-400">{{ t('botConfig.readyMessage', { exchange: exchanges.find(e => e.id === selectedExchange)?.name, ai: aiModels.find(a => a.id === selectedAI)?.name }) }}</p>
           </div>
         </div>
       </div>
