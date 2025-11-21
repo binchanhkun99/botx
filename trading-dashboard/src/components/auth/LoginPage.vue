@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { CheckCircle2, XCircle } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const emit = defineEmits(['loginSuccess'])
 
 const email = ref('')
@@ -25,7 +28,7 @@ const showNotification = (message: string, type: 'success' | 'error') => {
 
 const handleEmailSubmit = () => {
   if (!email.value || !email.value.includes('@')) {
-    showNotification('Vui lòng nhập email hợp lệ', 'error')
+    showNotification(t('notifications.invalidEmail'), 'error')
     return
   }
   
@@ -34,13 +37,13 @@ const handleEmailSubmit = () => {
   setTimeout(() => {
     loading.value = false
     showOTP.value = true
-    showNotification(`Mã OTP đã được gửi đến ${email.value}`, 'success')
+    showNotification(t('notifications.otpSent', { email: email.value }), 'success')
   }, 1500)
 }
 
 const handleOTPVerify = () => {
   if (otpCode.value !== '123456') {
-    showNotification('Mã OTP không đúng. Vui lòng thử lại', 'error')
+    showNotification(t('notifications.invalidOTP'), 'error')
     return
   }
   
@@ -48,7 +51,7 @@ const handleOTPVerify = () => {
   
   setTimeout(() => {
     loading.value = false
-    showNotification('Đăng nhập thành công!', 'success')
+    showNotification(t('notifications.loginSuccess'), 'success')
     
     setTimeout(() => {
       emit('loginSuccess')
@@ -57,14 +60,14 @@ const handleOTPVerify = () => {
 }
 
 const handleGoogleLogin = () => {
-  showNotification('Tính năng Google Login sẽ được tích hợp sau', 'error')
+  showNotification(t('notifications.googleLoginComingSoon'), 'error')
 }
 
 const handleResendOTP = () => {
   loading.value = true
   setTimeout(() => {
     loading.value = false
-    showNotification('Mã OTP mới đã được gửi lại', 'success')
+    showNotification(t('notifications.otpResent'), 'success')
   }, 1000)
 }
 
@@ -81,12 +84,15 @@ const handleBackToEmail = () => {
       <div 
         v-if="notification.show"
         :class="[
-          'fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 min-w-[320px]',
-          notification.type === 'success' ? 'bg-gradient-to-r from-green-600 to-emerald-500' : 'bg-gradient-to-r from-red-600 to-rose-500'
+          'fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-xl flex items-center gap-2.5 backdrop-blur-sm border',
+          notification.type === 'success' 
+            ? 'bg-green-500/90 border-green-400/50' 
+            : 'bg-red-500/90 border-red-400/50'
         ]"
       >
-        <span class="text-2xl">{{ notification.type === 'success' ? '✅' : '❌' }}</span>
-        <p class="text-white font-medium">{{ notification.message }}</p>
+        <CheckCircle2 v-if="notification.type === 'success'" class="w-5 h-5 text-white flex-shrink-0" />
+        <XCircle v-else class="w-5 h-5 text-white flex-shrink-0" />
+        <p class="text-white text-sm font-medium">{{ notification.message }}</p>
       </div>
     </transition>
 
@@ -95,7 +101,7 @@ const handleBackToEmail = () => {
       <!-- Logo & Title -->
       <div class="text-center mb-8">
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-primary mb-4 shadow-lg">
-          <span class="text-4xl">🤖</span>
+          <span class="text-4xl">BotX</span>
         </div>
         <h1 class="text-3xl font-bold text-white mb-2">AI TradeBot</h1>
         <p class="text-gray-400">Professional Trading Dashboard</p>
@@ -105,17 +111,17 @@ const handleBackToEmail = () => {
       <div class="bg-[#1a1d29] rounded-2xl shadow-2xl p-8 border border-gray-800">
         <!-- Email Input Form -->
         <div v-if="!showOTP">
-          <h2 class="text-2xl font-bold text-white mb-2">Đăng nhập</h2>
-          <p class="text-gray-400 mb-6">Nhập email để nhận mã OTP</p>
+          <h2 class="text-2xl font-bold text-white mb-2">{{ t('login.title') }}</h2>
+          <p class="text-gray-400 mb-6">{{ t('login.subtitle') }}</p>
 
           <div class="space-y-4">
             <!-- Email Input -->
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <label class="block text-sm font-medium text-gray-300 mb-2">{{ t('login.email') }}</label>
               <input
                 v-model="email"
                 type="email"
-                placeholder="example@email.com"
+                :placeholder="t('login.emailPlaceholder')"
                 @keyup.enter="handleEmailSubmit"
                 class="w-full px-4 py-3 bg-[#0f111a] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#D89A55] transition-colors"
               />
@@ -128,8 +134,8 @@ const handleBackToEmail = () => {
               class="w-full bg-gradient-primary hover:opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg flex items-center justify-center gap-2"
             >
               <span v-if="loading" class="loading-spinner"></span>
-              <span v-else>📧</span>
-              <span>{{ loading ? 'Đang gửi...' : 'Nhận mã OTP' }}</span>
+              <span v-else></span>
+              <span>{{ loading ? t('login.sending') : t('login.receiveOTP') }}</span>
             </button>
 
             <!-- Divider -->
@@ -138,7 +144,7 @@ const handleBackToEmail = () => {
                 <div class="w-full border-t border-gray-700"></div>
               </div>
               <div class="relative flex justify-center text-sm">
-                <span class="px-4 bg-[#1a1d29] text-gray-400">Hoặc</span>
+                <span class="px-4 bg-[#1a1d29] text-gray-400">{{ t('login.or') }}</span>
               </div>
             </div>
 
@@ -153,7 +159,7 @@ const handleBackToEmail = () => {
                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
-              <span>Đăng nhập với Google</span>
+              <span>{{ t('login.googleLogin') }}</span>
             </button>
           </div>
         </div>
@@ -165,27 +171,27 @@ const handleBackToEmail = () => {
             class="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors"
           >
             <span>←</span>
-            <span>Quay lại</span>
+            <span>{{ t('common.back') }}</span>
           </button>
 
-          <h2 class="text-2xl font-bold text-white mb-2">Xác thực OTP</h2>
+          <h2 class="text-2xl font-bold text-white mb-2">{{ t('login.otpTitle') }}</h2>
           <p class="text-gray-400 mb-6">
-            Mã OTP đã được gửi đến <span class="text-[#D89A55] font-medium">{{ email }}</span>
+            {{ t('login.otpSubtitle') }} <span class="text-[#D89A55] font-medium">{{ email }}</span>
           </p>
 
           <div class="space-y-4">
             <!-- OTP Input -->
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Mã OTP (6 chữ số)</label>
+              <label class="block text-sm font-medium text-gray-300 mb-2">{{ t('login.otpTitle') }}</label>
               <input
                 v-model="otpCode"
                 type="text"
                 maxlength="6"
-                placeholder="123456"
+                :placeholder="t('login.otpPlaceholder')"
                 @keyup.enter="handleOTPVerify"
                 class="w-full px-4 py-3 bg-[#0f111a] border border-gray-700 rounded-lg text-white text-center text-2xl font-bold tracking-widest placeholder-gray-600 focus:outline-none focus:border-[#D89A55] transition-colors"
               />
-              <p class="text-xs text-gray-500 mt-2 text-center">Demo: Nhập "123456" để đăng nhập</p>
+              <p class="text-xs text-gray-500 mt-2 text-center">{{ t('login.otpHint') }}</p>
             </div>
 
             <!-- Verify Button -->
@@ -196,7 +202,7 @@ const handleBackToEmail = () => {
             >
               <span v-if="loading" class="loading-spinner"></span>
               <span v-else>✓</span>
-              <span>{{ loading ? 'Đang xác thực...' : 'Xác nhận' }}</span>
+              <span>{{ loading ? t('login.verifying') : t('login.verify') }}</span>
             </button>
 
             <!-- Resend OTP -->
@@ -205,7 +211,7 @@ const handleBackToEmail = () => {
               :disabled="loading"
               class="w-full text-[#D89A55] hover:text-[#c88845] font-medium py-2 transition-colors disabled:opacity-50"
             >
-              Gửi lại mã OTP
+              {{ t('login.resendOTP') }}
             </button>
           </div>
         </div>
@@ -213,7 +219,7 @@ const handleBackToEmail = () => {
 
       <!-- Footer -->
       <p class="text-center text-gray-500 text-sm mt-6">
-        Bằng cách đăng nhập, bạn đồng ý với <span class="text-[#D89A55]">Điều khoản dịch vụ</span>
+        {{ t('login.terms') }} <span class="text-[#D89A55]">{{ t('login.termsLink') }}</span>
       </p>
     </div>
   </div>

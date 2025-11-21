@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { User, LogOut, Globe } from 'lucide-vue-next'
+import { User, LogOut, Globe, Check } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+import { changeLocale } from '../i18n'
 
+const { t, locale } = useI18n()
 const emit = defineEmits(['logout'])
 
 const showDropdown = ref(false)
+const showLanguageMenu = ref(false)
 
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value
@@ -24,12 +28,17 @@ const handleLogout = () => {
 
 const handleProfile = () => {
   showDropdown.value = false
-  alert('Tính năng Profile đang được phát triển')
+  alert(t('notifications.profileComingSoon'))
 }
 
-const handleLanguage = () => {
+const toggleLanguageMenu = () => {
+  showLanguageMenu.value = !showLanguageMenu.value
+}
+
+const setLanguage = (lang: string) => {
+  changeLocale(lang)
+  showLanguageMenu.value = false
   showDropdown.value = false
-  alert('Tính năng đa ngôn ngữ đang được phát triển')
 }
 
 onMounted(() => {
@@ -45,14 +54,14 @@ onUnmounted(() => {
   <header class="bg-dark-card border-b border-dark-lighter px-6 py-4">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-4">
-        <h2 class="text-2xl font-bold text-white">Trading Dashboard</h2>
+        <h2 class="text-2xl font-bold text-white">{{ t('header.title') }}</h2>
         <div class="w-2 h-2 bg-green-profit rounded-full animate-pulse"></div>
       </div>
 
       <div class="flex items-center gap-6">
         <div class="text-right">
-          <p class="text-xs text-gray-400">Balance: $7,460.80</p>
-          <p class="text-xs text-green-profit">PnL Today: +$7,263.60</p>
+          <p class="text-xs text-gray-400">{{ t('header.balance') }}: $7,460.80</p>
+          <p class="text-xs text-green-profit">{{ t('header.pnlToday') }}: +$7,263.60</p>
         </div>
         
         <!-- User Menu -->
@@ -76,17 +85,40 @@ onUnmounted(() => {
                 class="w-full px-4 py-3 flex items-center gap-3 hover:bg-[#252836] transition-colors text-left"
               >
                 <User class="w-5 h-5 text-gray-400" />
-                <span class="text-white">Profile</span>
+                <span class="text-white">{{ t('common.profile') }}</span>
               </button>
 
               <!-- Language -->
-              <button
-                @click="handleLanguage"
-                class="w-full px-4 py-3 flex items-center gap-3 hover:bg-[#252836] transition-colors text-left border-t border-gray-800"
-              >
-                <Globe class="w-5 h-5 text-gray-400" />
-                <span class="text-white">Đa ngôn ngữ</span>
-              </button>
+              <div class="border-t border-gray-800">
+                <button
+                  @click="toggleLanguageMenu"
+                  class="w-full px-4 py-3 flex items-center justify-between hover:bg-[#252836] transition-colors text-left"
+                >
+                  <div class="flex items-center gap-3">
+                    <Globe class="w-5 h-5 text-gray-400" />
+                    <span class="text-white">{{ t('common.language') }}</span>
+                  </div>
+                  <span class="text-gray-400 text-xs">{{ showLanguageMenu ? '▼' : '▶' }}</span>
+                </button>
+
+                <!-- Language Submenu -->
+                <div v-if="showLanguageMenu" class="bg-[#0f111a] border-t border-gray-800">
+                  <button
+                    @click="setLanguage('vi')"
+                    class="w-full px-4 py-2.5 flex items-center justify-between hover:bg-[#1a1d29] transition-colors text-left"
+                  >
+                    <span class="text-white text-sm ml-8">Tiếng Việt</span>
+                    <Check v-if="locale === 'vi'" class="w-4 h-4 text-green-500" />
+                  </button>
+                  <button
+                    @click="setLanguage('en')"
+                    class="w-full px-4 py-2.5 flex items-center justify-between hover:bg-[#1a1d29] transition-colors text-left"
+                  >
+                    <span class="text-white text-sm ml-8">English</span>
+                    <Check v-if="locale === 'en'" class="w-4 h-4 text-green-500" />
+                  </button>
+                </div>
+              </div>
 
               <!-- Logout -->
               <button
@@ -94,7 +126,7 @@ onUnmounted(() => {
                 class="w-full px-4 py-3 flex items-center gap-3 hover:bg-red-900/20 transition-colors text-left border-t border-gray-800"
               >
                 <LogOut class="w-5 h-5 text-red-400" />
-                <span class="text-red-400 font-medium">Đăng xuất</span>
+                <span class="text-red-400 font-medium">{{ t('common.logout') }}</span>
               </button>
             </div>
           </transition>
