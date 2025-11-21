@@ -19,16 +19,17 @@ export default {
   
   // Sidebar
   sidebar: {
+    appName: 'AI TradeBot',
+    appSubtitle: 'Professional Trading',
     dashboard: 'Dashboard',
     botConfig: 'Bot Configuration',
     tradeHistory: 'Trade History',
     liquidityChart: 'Liquidity Chart',
-    calendar: 'Economic Calendar',
-    tradeList: 'Trade List',
+    economicCalendar: 'Economic Calendar',
+    tradeLog: 'Trade Log',
     winRate: 'Win Rate',
-    tradesThisMonth: 'trades this month',
+    tradesThisMonth: '{count} trades this month',
     accountPerformance: 'Account Performance',
-    sessionLogout: 'Logout',
   },
   
   // Login Page
@@ -78,7 +79,21 @@ export default {
   
   // Bot Config
   botConfig: {
-    title: 'Bot Configuration',
+    title: 'Connection Configuration',
+    subtitle: 'Select exchange and AI model to start automated trading',
+    selectExchange: 'Select Exchange',
+    selectAI: 'Select AI Model',
+    apiInfo: '{exchange} API Information',
+    apiKey: 'API Key',
+    apiKeyPlaceholder: 'Enter your API Key',
+    secretKey: 'Secret Key',
+    secretKeyPlaceholder: 'Enter your Secret Key',
+    passphrase: 'Passphrase',
+    passphrasePlaceholder: 'Enter Passphrase (if required)',
+    securityNote: 'Security Note',
+    securityMessage: 'Your API Key and Secret Key will be encrypted and stored securely.',
+    saveConfig: 'Save Exchange Configuration',
+    saveSuccess: '✅ {exchange} configuration saved successfully!\n\nNote: This is demo mode. In production, data will be encrypted and stored securely.',
     botStatus: 'Bot Status',
     running: 'Running',
     paused: 'Paused',

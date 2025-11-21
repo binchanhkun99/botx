@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Shield, Eye, EyeOff } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const selectedExchange = ref('')
 const selectedAI = ref('')
@@ -81,7 +84,8 @@ const aiModels = [
 ]
 
 const handleSaveCredentials = () => {
-  alert(`✅ Cấu hình ${exchanges.find(e => e.id === selectedExchange.value)?.name} đã được lưu thành công!\n\nLưu ý: Đây là chế độ demo. Trong production, dữ liệu sẽ được mã hóa và lưu trữ an toàn.`)
+  const exchangeName = exchanges.find(e => e.id === selectedExchange.value)?.name
+  alert(t('botConfig.saveSuccess', { exchange: exchangeName }))
   credentials.value = { apiKey: '', secretKey: '', passphrase: '' }
 }
 </script>
@@ -89,13 +93,13 @@ const handleSaveCredentials = () => {
 <template>
   <div class="space-y-6">
     <div class="bg-dark-card rounded-xl p-6 border border-dark-lighter">
-      <h2 class="text-2xl font-bold text-white mb-2">Cấu hình kết nối</h2>
-      <p class="text-gray-400 text-sm mb-6">Chọn sàn giao dịch và AI model để bắt đầu trading tự động</p>
+      <h2 class="text-2xl font-bold text-white mb-2">{{ t('botConfig.title') }}</h2>
+      <p class="text-gray-400 text-sm mb-6">{{ t('botConfig.subtitle') }}</p>
 
       <div class="mb-8">
         <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <span>📊</span>
-          Chọn sàn giao dịch
+          {{ t('botConfig.selectExchange') }}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button
@@ -121,19 +125,19 @@ const handleSaveCredentials = () => {
       <div v-if="selectedExchange" class="mb-8 bg-dark-bg rounded-xl p-6 border border-dark-lighter">
         <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <Shield class="w-5 h-5 text-primary" />
-          Thông tin API {{ exchanges.find(e => e.id === selectedExchange)?.name }}
+          {{ t('botConfig.apiInfo', { exchange: exchanges.find(e => e.id === selectedExchange)?.name }) }}
         </h3>
         
         <div class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-300 mb-2">
-              API Key <span class="text-red-500">*</span>
+              {{ t('botConfig.apiKey') }} <span class="text-red-500">*</span>
             </label>
             <div class="relative">
               <input
                 v-model="credentials.apiKey"
                 :type="showApiKey ? 'text' : 'password'"
-                placeholder="Nhập API Key của bạn"
+                :placeholder="t('botConfig.apiKeyPlaceholder')"
                 class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 pr-12 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
               />
               <button
@@ -148,13 +152,13 @@ const handleSaveCredentials = () => {
 
           <div>
             <label class="block text-sm font-medium text-gray-300 mb-2">
-              Secret Key <span class="text-red-500">*</span>
+              {{ t('botConfig.secretKey') }} <span class="text-red-500">*</span>
             </label>
             <div class="relative">
               <input
                 v-model="credentials.secretKey"
                 :type="showSecretKey ? 'text' : 'password'"
-                placeholder="Nhập Secret Key của bạn"
+                :placeholder="t('botConfig.secretKeyPlaceholder')"
                 class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 pr-12 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
               />
               <button
@@ -169,14 +173,14 @@ const handleSaveCredentials = () => {
 
           <div>
             <label class="block text-sm font-medium text-gray-300 mb-2">
-              Passphrase
+              {{ t('botConfig.passphrase') }}
               <span class="text-gray-500 text-xs ml-1">(Chỉ cần cho OKX)</span>
             </label>
             <div class="relative">
               <input
                 v-model="credentials.passphrase"
                 :type="showPassphrase ? 'text' : 'password'"
-                placeholder="Nhập Passphrase (nếu có)"
+                :placeholder="t('botConfig.passphrasePlaceholder')"
                 :disabled="selectedExchange !== 'okx'"
                 class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 pr-12 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               />
@@ -195,7 +199,7 @@ const handleSaveCredentials = () => {
             <p class="text-yellow-500 text-sm flex items-start gap-2">
               <span class="text-lg">⚠️</span>
               <span>
-                <strong>Lưu ý bảo mật:</strong> API Key và Secret Key của bạn sẽ được mã hóa và lưu trữ an toàn. 
+                <strong>{{ t('botConfig.securityNote') }}:</strong> {{ t('botConfig.securityMessage') }} 
                 Không chia sẻ thông tin này với bất kỳ ai. Đảm bảo API chỉ có quyền trading, không cho phép withdrawal.
               </span>
             </p>
@@ -206,7 +210,7 @@ const handleSaveCredentials = () => {
             :disabled="!credentials.apiKey || !credentials.secretKey"
             class="w-full bg-gradient-primary hover:bg-gradient-primary-hover text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg"
           >
-            💾 Lưu cấu hình sàn
+            💾 {{ t('botConfig.saveConfig') }}
           </button>
         </div>
       </div>
@@ -214,7 +218,7 @@ const handleSaveCredentials = () => {
       <div class="mb-8">
         <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <span>🤖</span>
-          Chọn AI Model
+          {{ t('botConfig.selectAI') }}
         </h3>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           <button

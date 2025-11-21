@@ -19,16 +19,17 @@ export default {
   
   // Sidebar
   sidebar: {
+    appName: 'AI TradeBot',
+    appSubtitle: 'Professional Trading',
     dashboard: 'Dashboard',
     botConfig: 'Cấu hình Bot',
     tradeHistory: 'Lịch sử Trade',
     liquidityChart: 'Biểu đồ Liquid',
-    calendar: 'Lịch kinh tế',
-    tradeList: 'Lịch sử Trade',
+    economicCalendar: 'Lịch kinh tế',
+    tradeLog: 'Lịch sử Trade',
     winRate: 'Win Rate',
-    tradesThisMonth: 'trades trong tháng',
+    tradesThisMonth: '{count} trades trong tháng',
     accountPerformance: 'Hiệu suất tài khoản',
-    sessionLogout: 'Đăng xuất',
   },
   
   // Login Page
@@ -78,7 +79,21 @@ export default {
   
   // Bot Config
   botConfig: {
-    title: 'Cấu hình Bot',
+    title: 'Cấu hình kết nối',
+    subtitle: 'Chọn sàn giao dịch và AI model để bắt đầu trading tự động',
+    selectExchange: 'Chọn sàn giao dịch',
+    selectAI: 'Chọn AI Model',
+    apiInfo: 'Thông tin API {exchange}',
+    apiKey: 'API Key',
+    apiKeyPlaceholder: 'Nhập API Key của bạn',
+    secretKey: 'Secret Key',
+    secretKeyPlaceholder: 'Nhập Secret Key của bạn',
+    passphrase: 'Passphrase',
+    passphrasePlaceholder: 'Nhập Passphrase (nếu có)',
+    securityNote: 'Lưu ý bảo mật',
+    securityMessage: 'API Key và Secret Key của bạn sẽ được mã hóa và lưu trữ an toàn.',
+    saveConfig: 'Lưu cấu hình sàn',
+    saveSuccess: '✅ Cấu hình {exchange} đã được lưu thành công!\n\nLưu ý: Đây là chế độ demo. Trong production, dữ liệu sẽ được mã hóa và lưu trữ an toàn.',
     botStatus: 'Trạng thái Bot',
     running: 'Đang chạy',
     paused: 'Tạm dừng',
