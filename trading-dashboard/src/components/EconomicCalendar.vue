@@ -10,7 +10,7 @@ const events = computed(() => [
     time: '14:30',
     title: 'US Non-Farm Payrolls',
     details: `${t('calendar.expected')}: 180K | ${t('calendar.previous')}: 152K`,
-    impact: 'HIGH',
+    impact: t('calendar.impactHigh'),
     impactColor: 'text-red-loss',
     dotColor: 'bg-red-loss'
   },
@@ -18,7 +18,7 @@ const events = computed(() => [
     time: '06:00',
     title: 'EU Consumer Price Index',
     details: `${t('calendar.expected')}: 2.1% | ${t('calendar.previous')}: 2.4%`,
-    impact: 'MEDIUM',
+    impact: t('calendar.impactMedium'),
     impactColor: 'text-primary',
     dotColor: 'bg-primary'
   },
@@ -26,7 +26,7 @@ const events = computed(() => [
     time: '20:00',
     title: 'US Factory Orders',
     details: `${t('calendar.expected')}: 0.5% | ${t('calendar.previous')}: 0.2%`,
-    impact: 'LOW',
+    impact: t('calendar.impactLow'),
     impactColor: 'text-green-profit',
     dotColor: 'bg-green-profit'
   }

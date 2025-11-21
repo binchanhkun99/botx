@@ -65,18 +65,6 @@ export default {
     languageComingSoon: 'Multi-language feature is under development',
   },
   
-  // Dashboard - Stats Cards
-  stats: {
-    totalPnL: 'Total PnL',
-    comparedToLastWeek: 'compared to last week',
-    totalTrades: 'Total Trades',
-    winsAndLosses: '{wins} wins + {losses} losses',
-    winRate: 'Win Rate',
-    comparedToLastMonth: 'compared to last month',
-    availableCapital: 'Available Capital',
-    marginUsed: 'Margin used: {percent}',
-  },
-  
   // Bot Config
   botConfig: {
     title: 'Connection Configuration',
@@ -204,6 +192,9 @@ export default {
     title: 'Economic Calendar',
     expected: 'Expected',
     previous: 'Previous',
+    impactHigh: 'HIGH',
+    impactMedium: 'MEDIUM',
+    impactLow: 'LOW',
     quickActions: 'QUICK ACTIONS',
     buyQuick: 'Quick Buy',
     sellQuick: 'Quick Sell',

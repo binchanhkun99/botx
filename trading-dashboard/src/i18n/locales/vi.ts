@@ -65,18 +65,6 @@ export default {
     languageComingSoon: 'Tính năng đa ngôn ngữ đang được phát triển',
   },
   
-  // Dashboard - Stats Cards
-  stats: {
-    totalPnL: 'Tổng PnL',
-    comparedToLastWeek: 'so với tuần trước',
-    totalTrades: 'Tổng Trades',
-    winsAndLosses: 'thắng + {losses} thua',
-    winRate: 'Win Rate',
-    comparedToLastMonth: 'so với tháng trước',
-    availableCapital: 'Rút tiền khả dụng',
-    marginUsed: 'Margin đã dùng: {percent}',
-  },
-  
   // Bot Config
   botConfig: {
     title: 'Cấu hình kết nối',
@@ -204,6 +192,9 @@ export default {
     title: 'Lịch kinh tế',
     expected: 'Dự kiến',
     previous: 'Trước',
+    impactHigh: 'CAO',
+    impactMedium: 'TRUNG BÌNH',
+    impactLow: 'THẤP',
     quickActions: 'THAO TÁC NHANH',
     buyQuick: 'Mua nhanh',
     sellQuick: 'Bán nhanh',
