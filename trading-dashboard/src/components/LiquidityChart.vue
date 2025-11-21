@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { BarChart3 } from 'lucide-vue-next'
 import VueApexCharts from 'vue3-apexcharts'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const series = ref([
+const { t } = useI18n()
+
+const series = computed(() => [
   {
-    name: 'Long Liquidations',
+    name: t('liquidity.longLiquidations'),
     data: [2.1, 2.8, 2.3, 3.1, 2.4]
   },
   {
-    name: 'Short Liquidations',
+    name: t('liquidity.shortLiquidations'),
     data: [1.5, 2.1, 1.8, 2.3, 1.8]
   }
 ])
@@ -83,7 +86,7 @@ const chartOptions = ref({
     <div class="flex items-center justify-between mb-6">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
         <BarChart3 class="w-5 h-5 text-primary" />
-        Biểu đồ Liquid
+        {{ t('liquidity.title') }}
       </h3>
     </div>
 
@@ -98,14 +101,14 @@ const chartOptions = ref({
       <div class="space-y-2">
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 bg-green-profit rounded"></div>
-          <span class="text-xs text-gray-400">Long Liquidations:</span>
+          <span class="text-xs text-gray-400">{{ t('liquidity.longLiquidations') }}:</span>
         </div>
         <p class="text-lg font-bold text-green-profit">$2.4M</p>
       </div>
       <div class="space-y-2">
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 bg-red-loss rounded"></div>
-          <span class="text-xs text-gray-400">Short Liquidations:</span>
+          <span class="text-xs text-gray-400">{{ t('liquidity.shortLiquidations') }}:</span>
         </div>
         <p class="text-lg font-bold text-red-loss">$1.8M</p>
       </div>
@@ -113,7 +116,7 @@ const chartOptions = ref({
 
     <div class="mt-4 pt-4 border-t border-dark-lighter">
       <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-400">Tổng 24h:</span>
+        <span class="text-sm text-gray-400">{{ t('liquidity.total') }}:</span>
         <span class="text-lg font-bold text-primary">$4.2M</span>
       </div>
     </div>

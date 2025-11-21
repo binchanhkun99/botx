@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
+import { useI18n } from 'vue-i18n'
 
-const series = ref([
+const { t } = useI18n()
+
+const series = computed(() => [
   {
-    name: 'Portfolio A',
+    name: t('portfolio.portfolioA'),
     data: [3000, 4100, 3900, 5100, 4900, 6200, 7100, 8200, 9100, 10500, 12000, 13000]
   },
   {
-    name: 'Portfolio B',
+    name: t('portfolio.portfolioB'),
     data: [2000, 2800, 2600, 3400, 3200, 4100, 4800, 5600, 6300, 7200, 8100, 9000]
   }
 ])
@@ -95,7 +98,7 @@ const chartOptions = ref({
     <div class="flex items-center justify-between mb-4">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
         <span class="text-primary">📈</span>
-        Hiệu suất Portfolio
+        {{ t('portfolio.performance') }}
       </h3>
       <div class="flex gap-2">
         <button class="px-3 py-1.5 bg-gradient-primary text-white text-xs font-semibold rounded-lg shadow-md transition-all">7D</button>
@@ -104,7 +107,7 @@ const chartOptions = ref({
       </div>
     </div>
     
-    <p class="text-xs text-gray-400 mb-4">Theo dõi xu hướng đầu tư</p>
+    <p class="text-xs text-gray-400 mb-4">{{ t('portfolio.followInvestment') }}</p>
     
     <VueApexCharts
       type="area"
@@ -115,15 +118,15 @@ const chartOptions = ref({
     
     <div class="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-dark-lighter">
       <div>
-        <p class="text-xs text-gray-400">Tổng PnL</p>
+        <p class="text-xs text-gray-400">{{ t('portfolio.totalPnL') }}</p>
         <p class="text-sm font-bold text-green-profit">+$2,847.50</p>
       </div>
       <div>
-        <p class="text-xs text-gray-400">ROI</p>
+        <p class="text-xs text-gray-400">{{ t('portfolio.roi') }}</p>
         <p class="text-sm font-bold text-green-profit">+18.5%</p>
       </div>
       <div>
-        <p class="text-xs text-gray-400">Drawdown</p>
+        <p class="text-xs text-gray-400">{{ t('portfolio.drawdown') }}</p>
         <p class="text-sm font-bold text-red-loss">-3.2%</p>
       </div>
     </div>

@@ -154,28 +154,66 @@ export default {
     configSaved: '{exchange} configuration saved successfully!\n\nNote: This is demo mode. In production, data will be encrypted and stored securely.',
   },
   
+  // Stats Cards
+  stats: {
+    totalPnL: 'Total PnL',
+    totalTrades: 'Total Trades',
+    winRate: 'Win Rate',
+    availableFunds: 'Available Funds',
+    vsLastWeek: 'vs last week',
+    wins: 'wins',
+    losses: 'losses',
+    vsLastMonth: 'vs last month',
+    marginUsed: 'Margin used',
+  },
+
+  // Bot Config Panel
+  botPanel: {
+    title: 'Bot Configuration',
+    botStatus: 'Bot Status',
+    running: 'Running',
+    paused: 'Paused',
+    tradingStrategy: 'Trading Strategy',
+    scalpingDCA: 'Scalping + DCA',
+    swingTrading: 'Swing Trading',
+    hodlStrategy: 'HODL Strategy',
+    riskLevel: 'Risk Level',
+    low: 'Low',
+    medium: 'Medium',
+    high: 'High',
+    liquidityTracking: 'Liquidity Tracking',
+    liquidityAlert: 'Enable liquidity alerts',
+    autoTrade: 'Auto-trade when conditions met',
+    economicCalendar: 'Economic Calendar',
+    autoPause: 'Auto-pause on major events',
+  },
+
   // Portfolio Chart
   portfolio: {
     performance: 'Portfolio Performance',
     followInvestment: 'Track investment trends',
     portfolioA: 'Portfolio A',
     portfolioB: 'Portfolio B',
+    totalPnL: 'Total PnL',
+    roi: 'ROI',
+    drawdown: 'Drawdown',
   },
   
   // Economic Calendar
   calendar: {
     title: 'Economic Calendar',
+    expected: 'Expected',
+    previous: 'Previous',
     quickActions: 'QUICK ACTIONS',
-    buy: 'BUY',
-    sell: 'SELL',
+    buyQuick: 'Quick Buy',
+    sellQuick: 'Quick Sell',
     closeAll: 'Close All',
-    emergencyClose: 'Emergency',
+    emergencyClose: 'Emergency Close',
   },
   
   // Liquidity Chart
   liquidity: {
-    title: 'Liquidation Chart',
-    subtitle: '24h Liquidation Volume',
+    title: 'Liquidity Chart',
     total: 'Total 24h',
     longLiquidations: 'Long Liquidations',
     shortLiquidations: 'Short Liquidations',
@@ -183,7 +221,8 @@ export default {
   
   // Active Trades Table
   trades: {
-    title: 'Active Trades',
+    title: 'Trade History ({count} active orders)',
+    activeOrders: 'active orders',
     newOrder: 'New Order',
     symbol: 'Symbol',
     type: 'Type',

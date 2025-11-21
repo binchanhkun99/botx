@@ -1,38 +1,42 @@
 <script setup lang="ts">
 import { TrendingUp, BarChart3, Target, Wallet } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
 
-const stats = [
+const { t } = useI18n()
+
+const stats = computed(() => [
   {
-    title: 'Tổng PnL',
+    title: t('stats.totalPnL'),
     value: '+$3247.50',
-    change: '+12.5% so với tuần trước',
+    change: `+12.5% ${t('stats.vsLastWeek')}`,
     icon: TrendingUp,
     positive: true,
     iconBg: 'bg-dark-lighter',
   },
   {
-    title: 'Tổng Trades',
+    title: t('stats.totalTrades'),
     value: '1247',
-    change: '932 thắng + 315 thua',
+    change: `932 ${t('stats.wins')} + 315 ${t('stats.losses')}`,
     icon: BarChart3,
     iconBg: 'bg-dark-lighter',
   },
   {
-    title: 'Win Rate',
+    title: t('stats.winRate'),
     value: '74.8%',
-    change: '+2.1% so tháng trước',
+    change: `+2.1% ${t('stats.vsLastMonth')}`,
     icon: Target,
     positive: true,
     iconBg: 'bg-primary',
   },
   {
-    title: 'Rút tiền khả dụng',
+    title: t('stats.availableFunds'),
     value: '$8520.30',
-    change: 'Margin đã dùng: 35%',
+    change: `${t('stats.marginUsed')}: 35%`,
     icon: Wallet,
     iconBg: 'bg-dark-lighter',
   },
-]
+])
 </script>
 
 <template>

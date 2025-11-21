@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Play, Pause } from 'lucide-vue-next'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const botRunning = ref(true)
 const riskLevel = ref('medium')
@@ -14,13 +17,13 @@ const strategy = ref('scalping-dca')
     <div class="flex items-center justify-between mb-6">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
         <span class="text-primary">🤖</span>
-        Cấu hình Bot
+        {{ t('botPanel.title') }}
       </h3>
     </div>
 
     <div class="space-y-6">
       <div>
-        <p class="text-sm text-gray-400 mb-3">Trạng thái Bot</p>
+        <p class="text-sm text-gray-400 mb-3">{{ t('botPanel.botStatus') }}</p>
         <div class="flex gap-3">
           <button
             @click="botRunning = true"
@@ -30,7 +33,7 @@ const strategy = ref('scalping-dca')
             ]"
           >
             <Play class="w-4 h-4" />
-            <span class="text-sm font-medium">Đang chạy</span>
+            <span class="text-sm font-medium">{{ t('botPanel.running') }}</span>
           </button>
           <button
             @click="botRunning = false"
@@ -40,25 +43,25 @@ const strategy = ref('scalping-dca')
             ]"
           >
             <Pause class="w-4 h-4" />
-            <span class="text-sm font-medium">Tạm dừng</span>
+            <span class="text-sm font-medium">{{ t('botPanel.paused') }}</span>
           </button>
         </div>
       </div>
 
       <div>
-        <p class="text-sm text-gray-400 mb-3">Phương pháp Trade</p>
+        <p class="text-sm text-gray-400 mb-3">{{ t('botPanel.tradingStrategy') }}</p>
         <select
           v-model="strategy"
           class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
         >
-          <option value="scalping-dca">Scalping + DCA</option>
-          <option value="swing">Swing Trading</option>
-          <option value="hodl">HODL Strategy</option>
+          <option value="scalping-dca">{{ t('botPanel.scalpingDCA') }}</option>
+          <option value="swing">{{ t('botPanel.swingTrading') }}</option>
+          <option value="hodl">{{ t('botPanel.hodlStrategy') }}</option>
         </select>
       </div>
 
       <div>
-        <p class="text-sm text-gray-400 mb-3">Mức độ rủi ro</p>
+        <p class="text-sm text-gray-400 mb-3">{{ t('botPanel.riskLevel') }}</p>
         <div class="flex gap-2">
           <button
             @click="riskLevel = 'low'"
@@ -67,7 +70,7 @@ const strategy = ref('scalping-dca')
               riskLevel === 'low' ? 'bg-dark-lighter text-white' : 'bg-dark-bg text-gray-400'
             ]"
           >
-            Thấp
+            {{ t('botPanel.low') }}
           </button>
           <button
             @click="riskLevel = 'medium'"
@@ -76,7 +79,7 @@ const strategy = ref('scalping-dca')
               riskLevel === 'medium' ? 'bg-primary text-white' : 'bg-dark-bg text-gray-400'
             ]"
           >
-            Trung bình
+            {{ t('botPanel.medium') }}
           </button>
           <button
             @click="riskLevel = 'high'"
@@ -85,16 +88,16 @@ const strategy = ref('scalping-dca')
               riskLevel === 'high' ? 'bg-dark-lighter text-white' : 'bg-dark-bg text-gray-400'
             ]"
           >
-            Cao
+            {{ t('botPanel.high') }}
           </button>
         </div>
       </div>
 
       <div>
-        <p class="text-sm text-gray-400 mb-3">Theo dõi Liquid</p>
+        <p class="text-sm text-gray-400 mb-3">{{ t('botPanel.liquidityTracking') }}</p>
         <div class="space-y-3">
           <label class="flex items-center justify-between cursor-pointer">
-            <span class="text-sm text-gray-300">Bật cảnh báo thanh khoản</span>
+            <span class="text-sm text-gray-300">{{ t('botPanel.liquidityAlert') }}</span>
             <div class="relative">
               <input
                 type="checkbox"
@@ -106,7 +109,7 @@ const strategy = ref('scalping-dca')
           </label>
 
           <label class="flex items-center justify-between cursor-pointer">
-            <span class="text-sm text-gray-300">Tự động đăng khi có đủ hệ</span>
+            <span class="text-sm text-gray-300">{{ t('botPanel.autoTrade') }}</span>
             <div class="relative">
               <input
                 type="checkbox"
@@ -120,9 +123,9 @@ const strategy = ref('scalping-dca')
       </div>
 
       <div>
-        <p class="text-sm text-gray-400 mb-3">Lịch kinh tế</p>
+        <p class="text-sm text-gray-400 mb-3">{{ t('botPanel.economicCalendar') }}</p>
         <label class="flex items-center justify-between cursor-pointer">
-          <span class="text-sm text-gray-300">Tự động dừng khi có tin quan trọng</span>
+          <span class="text-sm text-gray-300">{{ t('botPanel.autoPause') }}</span>
           <div class="relative">
             <input
               type="checkbox"

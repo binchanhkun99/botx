@@ -154,28 +154,66 @@ export default {
     configSaved: 'Cấu hình {exchange} đã được lưu thành công!\n\nLưu ý: Đây là chế độ demo. Trong production, dữ liệu sẽ được mã hóa và lưu trữ an toàn.',
   },
   
+  // Stats Cards
+  stats: {
+    totalPnL: 'Tổng PnL',
+    totalTrades: 'Tổng Trades',
+    winRate: 'Win Rate',
+    availableFunds: 'Rút tiền khả dụng',
+    vsLastWeek: 'so với tuần trước',
+    wins: 'thắng',
+    losses: 'thua',
+    vsLastMonth: 'so tháng trước',
+    marginUsed: 'Margin đã dùng',
+  },
+
+  // Bot Config Panel
+  botPanel: {
+    title: 'Cấu hình Bot',
+    botStatus: 'Trạng thái Bot',
+    running: 'Đang chạy',
+    paused: 'Tạm dừng',
+    tradingStrategy: 'Phương pháp Trade',
+    scalpingDCA: 'Scalping + DCA',
+    swingTrading: 'Swing Trading',
+    hodlStrategy: 'HODL Strategy',
+    riskLevel: 'Mức độ rủi ro',
+    low: 'Thấp',
+    medium: 'Trung bình',
+    high: 'Cao',
+    liquidityTracking: 'Theo dõi Liquid',
+    liquidityAlert: 'Bật cảnh báo thanh khoản',
+    autoTrade: 'Tự động đăng khi có đủ hệ',
+    economicCalendar: 'Lịch kinh tế',
+    autoPause: 'Tự động dừng khi có tin quan trọng',
+  },
+
   // Portfolio Chart
   portfolio: {
     performance: 'Hiệu suất Portfolio',
     followInvestment: 'Theo dõi xu hướng đầu tư',
     portfolioA: 'Portfolio A',
     portfolioB: 'Portfolio B',
+    totalPnL: 'Tổng PnL',
+    roi: 'ROI',
+    drawdown: 'Drawdown',
   },
   
   // Economic Calendar
   calendar: {
     title: 'Lịch kinh tế',
+    expected: 'Dự kiến',
+    previous: 'Trước',
     quickActions: 'THAO TÁC NHANH',
-    buy: 'MUA',
-    sell: 'BÁN',
+    buyQuick: 'Mua nhanh',
+    sellQuick: 'Bán nhanh',
     closeAll: 'Đóng tất cả',
-    emergencyClose: 'Khẩn cấp',
+    emergencyClose: 'Đóng khẩn cấp',
   },
   
   // Liquidity Chart
   liquidity: {
-    title: 'Liquidation Chart',
-    subtitle: '24h Liquidation Volume',
+    title: 'Biểu đồ Liquid',
     total: 'Tổng 24h',
     longLiquidations: 'Long Liquidations',
     shortLiquidations: 'Short Liquidations',
@@ -183,7 +221,8 @@ export default {
   
   // Active Trades Table
   trades: {
-    title: 'Lệnh đang chạy',
+    title: 'Lịch sử lệnh ({count} lệnh hoạt động)',
+    activeOrders: 'lệnh hoạt động',
     newOrder: 'Lệnh mới',
     symbol: 'Symbol',
     type: 'Loại',

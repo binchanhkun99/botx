@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Pencil, Plus } from 'lucide-vue-next'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const trades = ref([
   {
@@ -21,11 +24,11 @@ const trades = ref([
     <div class="flex items-center justify-between mb-6">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
         <span>📋</span>
-        Lịch sử lệnh (3 lệnh hoạt động)
+        {{ t('trades.title', { count: 3 }) }}
       </h3>
       <button class="flex items-center gap-2 px-6 py-3 bg-gradient-primary hover:bg-gradient-primary-hover text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
         <Plus class="w-4 h-4" />
-        <span class="text-sm">Lệnh mới</span>
+        <span class="text-sm">{{ t('trades.newOrder') }}</span>
       </button>
     </div>
 
@@ -33,14 +36,14 @@ const trades = ref([
       <table class="w-full">
         <thead>
           <tr class="border-b border-dark-lighter">
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Symbol</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Loại</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Entry</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Hiện tại</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Take Profit</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Stop Loss</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">PnL</th>
-            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">Thao tác</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.symbol') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.type') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.entry') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.current') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.takeProfit') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.stopLoss') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.pnl') }}</th>
+            <th class="text-left py-3 px-4 text-xs font-medium text-gray-400">{{ t('trades.actions') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +62,7 @@ const trades = ref([
             </td>
             <td class="py-4 px-4">
               <span class="px-3 py-1 bg-green-profit/20 text-green-profit text-xs font-medium rounded-full">
-                {{ trade.type }}
+                {{ t('trades.long') }}
               </span>
             </td>
             <td class="py-4 px-4 text-sm text-gray-300">{{ trade.entry }}</td>
