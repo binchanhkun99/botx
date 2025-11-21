@@ -1,7 +1,7 @@
 # Trading Dashboard - AI TradeBot
 
 ## Recent Updates (November 21, 2025)
-### 🔐 New Authentication System
+### 🔐 Authentication System
 - **Login/Registration Page**: Unified page for both login and registration
 - **Email OTP Verification**: Enter email → receive OTP → verify with 6-digit code
   - Demo OTP code: `123456` (for testing purposes)
@@ -10,6 +10,19 @@
 - **Loading States**: Spinner animations during authentication process
 - **Professional Folder Structure**: Auth components organized in `components/auth/` folder
 - **Security**: No credentials logged to console, form auto-clears after submission
+
+### 👤 User Dropdown Menu
+- **Avatar Button**: Click on avatar in header to open dropdown menu
+- **Profile Option**: Access profile settings (placeholder - to be implemented)
+- **Language Selection**: Multi-language support option (placeholder - to be implemented)
+- **Logout Function**: Sign out and return to login page
+- **Visual Design**: 
+  - Avatar uses gradient primary color
+  - Smooth dropdown animation
+  - Icons from Lucide Vue (User, Globe, LogOut)
+  - Logout option styled in red for emphasis
+- **Click Outside**: Dropdown auto-closes when clicking outside
+- **State Management**: Properly resets authentication and page state on logout
 
 ### 🎨 Gradient Color Scheme
 - Updated primary colors to gradient: `linear-gradient(90deg, #5C4735 0%, #D89A55 100%)`
@@ -36,7 +49,7 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 
 ## Project Information
 - **Created**: October 29, 2025
-- **Last Updated**: November 21, 2025 (Authentication system with email OTP)
+- **Last Updated**: November 21, 2025 (User dropdown menu with logout)
 - **Framework**: Vue.js 3 with Composition API
 - **Styling**: Tailwind CSS 3
 - **Charts**: ApexCharts (vue3-apexcharts)
@@ -53,6 +66,8 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 - **Toast Notifications**: Beautiful success/error messages with animations
 - **Loading States**: Smooth loading indicators during authentication
 - **Session Management**: State-based authentication with Vue reactive refs
+- **User Dropdown**: Avatar menu with Profile, Language, and Logout options
+- **Logout Function**: Resets authentication state and returns to login page
 
 ### ✅ Main Dashboard
 - **Statistics Cards**: Real-time display of Total PnL, Total Trades, Win Rate, and Available Capital
