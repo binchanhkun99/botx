@@ -1,6 +1,22 @@
 # Trading Dashboard - AI TradeBot
 
 ## Recent Updates (November 21, 2025)
+
+### 🌍 Multi-Language Support (i18n) - COMPLETED ✅
+- **Full Internationalization**: Complete i18n implementation using vue-i18n
+- **Supported Languages**: Vietnamese (Tiếng Việt) and English
+- **Language Selector**: Dropdown in Header with checkmark showing active language
+- **Browser Detection**: Auto-detects browser language on first visit
+- **Persistent Selection**: Language choice saved to localStorage
+- **Reactive Switching**: All pages update instantly when language changes
+- **Complete Coverage**: All components fully translated (LoginPage, Header, Sidebar, Dashboard, BotConfigPage)
+- **Organized Translation Files**:
+  - `src/i18n/locales/vi.ts` - Vietnamese translations
+  - `src/i18n/locales/en.ts` - English translations
+  - Comprehensive key structure (common, header, sidebar, login, notifications, botConfig)
+- **Reactive Content**: Exchange and AI model descriptions use computed properties for instant language updates
+- **Production Ready**: Architect-approved with no runtime errors or security issues
+
 ### 🔐 Authentication System
 - **Login/Registration Page**: Unified page for both login and registration
 - **Email OTP Verification**: Enter email → receive OTP → verify with 6-digit code
@@ -10,11 +26,12 @@
 - **Loading States**: Spinner animations during authentication process
 - **Professional Folder Structure**: Auth components organized in `components/auth/` folder
 - **Security**: No credentials logged to console, form auto-clears after submission
+- **Multi-Language**: All authentication text translates between Vietnamese and English
 
 ### 👤 User Dropdown Menu
 - **Avatar Button**: Click on avatar in header to open dropdown menu
 - **Profile Option**: Access profile settings (placeholder - to be implemented)
-- **Language Selection**: Multi-language support option (placeholder - to be implemented)
+- **Language Selection**: Switch between Vietnamese and English with checkmark indicator
 - **Logout Function**: Sign out and return to login page
 - **Visual Design**: 
   - Avatar uses gradient primary color
@@ -49,11 +66,12 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 
 ## Project Information
 - **Created**: October 29, 2025
-- **Last Updated**: November 21, 2025 (User dropdown menu with logout)
+- **Last Updated**: November 21, 2025 (Complete i18n multi-language support)
 - **Framework**: Vue.js 3 with Composition API
 - **Styling**: Tailwind CSS 3
 - **Charts**: ApexCharts (vue3-apexcharts)
 - **Icons**: Lucide Vue Next
+- **Internationalization**: vue-i18n (Vietnamese & English)
 - **Build Tool**: Vite
 - **Language**: TypeScript
 
@@ -128,7 +146,7 @@ trading-dashboard/
 │   │   ├── auth/                    # Authentication components
 │   │   │   └── LoginPage.vue        # Login/Registration with OTP verification
 │   │   ├── Sidebar.vue              # Left navigation sidebar with gradient buttons
-│   │   ├── Header.vue               # Top header with balance
+│   │   ├── Header.vue               # Top header with balance & language selector
 │   │   ├── Dashboard.vue            # Main dashboard layout
 │   │   ├── BotConfigPage.vue        # Bot configuration page
 │   │   ├── StatsCards.vue           # Statistics cards grid
@@ -137,6 +155,11 @@ trading-dashboard/
 │   │   ├── EconomicCalendar.vue     # Economic events calendar
 │   │   ├── LiquidityChart.vue       # Liquidation bar chart
 │   │   └── TradeTable.vue           # Active trades table
+│   ├── i18n/                        # Internationalization
+│   │   ├── index.ts                 # i18n configuration
+│   │   └── locales/
+│   │       ├── vi.ts                # Vietnamese translations
+│   │       └── en.ts                # English translations
 │   ├── assets/
 │   │   └── main.css                 # Tailwind CSS imports
 │   ├── App.vue                      # Main app component with auth routing
@@ -161,6 +184,7 @@ trading-dashboard/
 ### Dependencies
 - **vue**: ^3.5.22
 - **vue-router**: ^4.6.3
+- **vue-i18n**: ^11.0.0 (internationalization)
 - **apexcharts**: ^5.3.5
 - **vue3-apexcharts**: ^1.10.0
 - **lucide-vue-next**: ^0.548.0
@@ -194,10 +218,8 @@ All data displayed is currently mock/sample data for demonstration purposes:
 
 ## Future Enhancements
 - Real-time cryptocurrency price data integration via WebSocket
-- User authentication and session management
 - Database integration for trade history
 - Bot automation backend
-- Multi-language support (currently Vietnamese)
 - Export functionality for trade data
 - Mobile responsive optimizations
 - Real-time notifications
@@ -205,10 +227,11 @@ All data displayed is currently mock/sample data for demonstration purposes:
 - Trading strategy backtesting
 
 ## User Preferences
-- Language: Vietnamese (Tiếng Việt)
-- Design Style: Dark theme with professional trading interface
-- Chart Style: Smooth gradient area charts and bar charts
-- Color Accents: Orange (#f59e0b) as primary brand color
+- **Languages**: Vietnamese (Tiếng Việt) and English - fully implemented with vue-i18n
+- **Language Detection**: Auto-detect browser language on first visit, persistent selection in localStorage
+- **Design Style**: Dark theme with professional trading interface
+- **Chart Style**: Smooth gradient area charts and bar charts
+- **Primary Color**: Brown-to-gold gradient `linear-gradient(90deg, #5C4735 0%, #D89A55 100%)`
 
 ## Notes
 - The application is designed to match the provided reference image exactly
