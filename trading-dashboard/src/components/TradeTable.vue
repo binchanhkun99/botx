@@ -21,7 +21,7 @@ const trades = ref([
     <div class="flex items-center justify-between mb-6">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
         <span>📋</span>
-        Lịch dạng Trade (3 lệnh hoạt động)
+        Lịch sử lệnh (3 lệnh hoạt động)
       </h3>
       <button class="flex items-center gap-2 px-6 py-3 bg-gradient-primary hover:bg-gradient-primary-hover text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
         <Plus class="w-4 h-4" />

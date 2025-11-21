@@ -8,7 +8,7 @@ const winRate = ref(75)
 const menuItems = [
   { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { id: 'bot-config', icon: Bot, label: 'Cấu hình Bot' },
-  { id: 'trade-history', icon: History, label: 'Lịch dạng Trade' },
+  { id: 'trade-history', icon: History, label: 'Lịch sử Trade' },
   { id: 'liquidity', icon: BarChart3, label: 'Biểu đồ Liquid' },
   { id: 'calendar', icon: Calendar, label: 'Lịch kinh tế' },
   { id: 'trade-log', icon: ListChecks, label: 'Lịch sử Trade' },
