@@ -4,16 +4,26 @@ import Sidebar from './components/Sidebar.vue'
 import Header from './components/Header.vue'
 import Dashboard from './components/Dashboard.vue'
 import BotConfigPage from './components/BotConfigPage.vue'
+import LoginPage from './components/auth/LoginPage.vue'
 
 const currentPage = ref('dashboard')
+const isAuthenticated = ref(false)
 
 const handleMenuChange = (menuId: string) => {
   currentPage.value = menuId
 }
+
+const handleLoginSuccess = () => {
+  isAuthenticated.value = true
+}
 </script>
 
 <template>
-  <div class="flex h-screen bg-dark-bg overflow-hidden">
+  <!-- Login Page -->
+  <LoginPage v-if="!isAuthenticated" @login-success="handleLoginSuccess" />
+  
+  <!-- Main Dashboard (After Login) -->
+  <div v-else class="flex h-screen bg-dark-bg overflow-hidden">
     <Sidebar @menu-change="handleMenuChange" />
     <div class="flex-1 flex flex-col overflow-hidden">
       <Header />
