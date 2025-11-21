@@ -8,11 +8,18 @@ const showOTP = ref(false)
 const otpCode = ref('')
 const loading = ref(false)
 const notification = ref({ show: false, message: '', type: 'success' })
+let notificationTimeout: number | null = null
 
 const showNotification = (message: string, type: 'success' | 'error') => {
+  // Clear previous timeout if exists
+  if (notificationTimeout !== null) {
+    clearTimeout(notificationTimeout)
+  }
+  
   notification.value = { show: true, message, type }
-  setTimeout(() => {
+  notificationTimeout = setTimeout(() => {
     notification.value.show = false
+    notificationTimeout = null
   }, 3000)
 }
 

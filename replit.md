@@ -1,13 +1,23 @@
 # Trading Dashboard - AI TradeBot
 
-## Recent Updates (October 29, 2025)
-### 🎨 New Gradient Color Scheme
+## Recent Updates (November 21, 2025)
+### 🔐 New Authentication System
+- **Login/Registration Page**: Unified page for both login and registration
+- **Email OTP Verification**: Enter email → receive OTP → verify with 6-digit code
+  - Demo OTP code: `123456` (for testing purposes)
+- **Google Login Button**: Ready for integration (to be configured by user)
+- **Beautiful Notifications**: Toast notifications for success/error messages with slide-down animation
+- **Loading States**: Spinner animations during authentication process
+- **Professional Folder Structure**: Auth components organized in `components/auth/` folder
+- **Security**: No credentials logged to console, form auto-clears after submission
+
+### 🎨 Gradient Color Scheme
 - Updated primary colors to gradient: `linear-gradient(90deg, #5C4735 0%, #D89A55 100%)`
 - All active buttons in sidebar now use the brown-to-gold gradient
 - Win Rate circular progress indicator uses gradient stroke
 - All main action buttons styled with gradient backgrounds and hover effects
 
-### 🔧 New Bot Configuration Page
+### 🔧 Bot Configuration Page
 - **Exchange Selection**: Choose from OKX, Bybit, or Binance with visual cards
 - **API Credentials Form**: Secure input fields for API Key, Secret Key, and Passphrase (OKX only)
 - **Password Visibility Toggle**: Eye icons to show/hide sensitive credentials
@@ -26,7 +36,7 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 
 ## Project Information
 - **Created**: October 29, 2025
-- **Last Updated**: October 29, 2025 (Gradient update + Bot Config page)
+- **Last Updated**: November 21, 2025 (Authentication system with email OTP)
 - **Framework**: Vue.js 3 with Composition API
 - **Styling**: Tailwind CSS 3
 - **Charts**: ApexCharts (vue3-apexcharts)
@@ -35,6 +45,15 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 - **Language**: TypeScript
 
 ## Features Implemented
+### ✅ Authentication System
+- **Login/Registration Page**: Single page for both login and registration workflows
+- **Email Input**: Validate email format before proceeding
+- **OTP Verification**: 6-digit code input (demo code: 123456)
+- **Google Login**: Button ready for OAuth integration
+- **Toast Notifications**: Beautiful success/error messages with animations
+- **Loading States**: Smooth loading indicators during authentication
+- **Session Management**: State-based authentication with Vue reactive refs
+
 ### ✅ Main Dashboard
 - **Statistics Cards**: Real-time display of Total PnL, Total Trades, Win Rate, and Available Capital
 - **Dark Theme**: Professional dark color scheme matching the design (#0f111a background, #1a1d29 cards, #f59e0b orange accents)
@@ -91,10 +110,12 @@ A professional cryptocurrency trading dashboard built with Vue.js 3, TypeScript,
 trading-dashboard/
 ├── src/
 │   ├── components/
+│   │   ├── auth/                    # Authentication components
+│   │   │   └── LoginPage.vue        # Login/Registration with OTP verification
 │   │   ├── Sidebar.vue              # Left navigation sidebar with gradient buttons
 │   │   ├── Header.vue               # Top header with balance
 │   │   ├── Dashboard.vue            # Main dashboard layout
-│   │   ├── BotConfigPage.vue        # NEW: Bot configuration page
+│   │   ├── BotConfigPage.vue        # Bot configuration page
 │   │   ├── StatsCards.vue           # Statistics cards grid
 │   │   ├── BotConfig.vue            # Bot configuration panel
 │   │   ├── PortfolioChart.vue       # Portfolio performance chart
@@ -103,7 +124,7 @@ trading-dashboard/
 │   │   └── TradeTable.vue           # Active trades table
 │   ├── assets/
 │   │   └── main.css                 # Tailwind CSS imports
-│   ├── App.vue                      # Main app component
+│   ├── App.vue                      # Main app component with auth routing
 │   └── main.ts                      # Application entry point
 ├── tailwind.config.js               # Tailwind configuration
 ├── vite.config.ts                   # Vite configuration
