@@ -16,6 +16,11 @@ const handleMenuChange = (menuId: string) => {
 const handleLoginSuccess = () => {
   isAuthenticated.value = true
 }
+
+const handleLogout = () => {
+  isAuthenticated.value = false
+  currentPage.value = 'dashboard' // Reset to dashboard page
+}
 </script>
 
 <template>
@@ -26,7 +31,7 @@ const handleLoginSuccess = () => {
   <div v-else class="flex h-screen bg-dark-bg overflow-hidden">
     <Sidebar @menu-change="handleMenuChange" />
     <div class="flex-1 flex flex-col overflow-hidden">
-      <Header />
+      <Header @logout="handleLogout" />
       <main class="flex-1 overflow-y-auto p-6">
         <Dashboard v-if="currentPage === 'dashboard'" />
         <BotConfigPage v-else-if="currentPage === 'bot-config'" />
