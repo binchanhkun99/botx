@@ -107,7 +107,7 @@ const chartAnnotations = computed(() => {
         },
         label: {
           borderColor: colors[index],
-          offsetX: -70,
+          offsetX: -50,
           offsetY: 0,
           textAnchor: 'end',
           style: {

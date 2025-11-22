@@ -5,6 +5,7 @@ import Header from './components/Header.vue'
 import Dashboard from './components/Dashboard.vue'
 import BotConfigPage from './components/BotConfigPage.vue'
 import TradingDemo from './components/TradingDemo.vue'
+import WalletPage from './components/WalletPage.vue'
 import LoginPage from './components/auth/LoginPage.vue'
 
 const currentPage = ref('dashboard')
@@ -20,7 +21,7 @@ const handleLoginSuccess = () => {
 
 const handleLogout = () => {
   isAuthenticated.value = false
-  currentPage.value = 'dashboard' // Reset to dashboard page
+  currentPage.value = 'dashboard'
 }
 </script>
 
@@ -37,6 +38,7 @@ const handleLogout = () => {
         <div v-if="currentPage === 'dashboard'" class="p-6">
           <Dashboard />
         </div>
+        <WalletPage v-else-if="currentPage === 'wallet'" />
         <div v-else-if="currentPage === 'bot-config'" class="p-6">
           <BotConfigPage />
         </div>

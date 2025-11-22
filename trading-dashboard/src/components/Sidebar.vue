@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutDashboard, Bot, History, TrendingUp, BarChart3, Calendar, ListChecks, LogOut } from 'lucide-vue-next'
+import { LayoutDashboard, Bot, History, TrendingUp, BarChart3, Calendar, ListChecks, Wallet, LogOut } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -9,6 +9,7 @@ const winRate = ref(75)
 
 const menuItems = [
   { id: 'dashboard', icon: LayoutDashboard, labelKey: 'sidebar.dashboard' },
+  { id: 'wallet', icon: Wallet, labelKey: 'wallet.title' },
   { id: 'bot-config', icon: Bot, labelKey: 'sidebar.botConfig' },
   { id: 'trade-history', icon: History, labelKey: 'sidebar.tradeHistory' },
   { id: 'trading-demo', icon: TrendingUp, labelKey: 'sidebar.tradingDemo' },
