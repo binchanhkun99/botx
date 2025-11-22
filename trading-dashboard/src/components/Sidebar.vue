@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { LayoutDashboard, Bot, History, TrendingUp, BarChart3, Calendar, ListChecks, Wallet, LogOut } from 'lucide-vue-next'
+import { LayoutDashboard, Bot, History, TrendingUp, BarChart3, Calendar, ListChecks, Wallet, LogOut, X } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+defineProps<{
+  isMobileOpen: boolean
+}>()
+
+const emit = defineEmits(['menu-change', 'close'])
 
 const { t } = useI18n()
 const activeMenu = ref('dashboard')
@@ -17,10 +23,32 @@ const menuItems = [
   { id: 'calendar', icon: Calendar, labelKey: 'sidebar.economicCalendar' },
   { id: 'trade-log', icon: ListChecks, labelKey: 'sidebar.tradeLog' },
 ]
+
+const handleMenuClick = (menuId: string) => {
+  activeMenu.value = menuId
+  emit('menu-change', menuId)
+}
 </script>
 
 <template>
-  <aside class="w-64 bg-dark-card border-r border-dark-lighter flex flex-col">
+  <aside 
+    :class="[
+      'w-64 bg-dark-card border-r border-dark-lighter flex flex-col',
+      'fixed lg:static top-0 bottom-0 left-0 z-50',
+      'transform transition-transform duration-300 ease-in-out',
+      isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+    ]"
+  >
+    <!-- Mobile Close Button -->
+    <div class="lg:hidden absolute top-4 right-4">
+      <button 
+        @click="emit('close')"
+        class="p-2 hover:bg-dark-lighter rounded-lg transition-colors"
+      >
+        <X class="w-5 h-5 text-gray-400" />
+      </button>
+    </div>
+
     <div class="p-6 border-b border-dark-lighter">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -33,11 +61,11 @@ const menuItems = [
       </div>
     </div>
 
-    <nav class="flex-1 p-4 space-y-2">
+    <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
       <button
         v-for="item in menuItems"
         :key="item.id"
-        @click="activeMenu = item.id; $emit('menu-change', item.id)"
+        @click="handleMenuClick(item.id)"
         :class="[
           'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
           activeMenu === item.id 
