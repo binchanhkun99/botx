@@ -1,19 +1,15 @@
 <script setup>
 import { ref } from 'vue'
-import { Menu, Search, Languages, Sun, Moon, Grid3x3, Bell } from 'lucide-vue-next'
+import { Menu, Search, Languages, Sun, Grid3x3, Bell } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import { changeLocale } from '../i18n'
 
 const emit = defineEmits(['toggleSidebar'])
 const { locale } = useI18n()
 
-const isDark = ref(true)
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value
-}
-
-const toggleLanguage = () => {
-  locale.value = locale.value === 'vi' ? 'en' : 'vi'
+const toggleLanguage = async () => {
+  const newLocale = locale.value === 'vi' ? 'en' : 'vi'
+  await changeLocale(newLocale)
 }
 </script>
 
@@ -41,12 +37,8 @@ const toggleLanguage = () => {
           <Languages class="w-5 h-5 text-gray-300" />
         </button>
 
-        <button 
-          @click="toggleTheme"
-          class="p-2 hover:bg-dark-lighter rounded-lg transition-colors"
-        >
-          <Sun v-if="isDark" class="w-5 h-5 text-gray-300" />
-          <Moon v-else class="w-5 h-5 text-gray-300" />
+        <button class="p-2 hover:bg-dark-lighter rounded-lg transition-colors">
+          <Sun class="w-5 h-5 text-gray-300" />
         </button>
 
         <button class="p-2 hover:bg-dark-lighter rounded-lg transition-colors">
