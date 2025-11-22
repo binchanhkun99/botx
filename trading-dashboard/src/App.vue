@@ -57,11 +57,12 @@ const closeMobileSidebar = () => {
       :is-mobile-open="isMobileSidebarOpen"
       @menu-change="handleMenuChange" 
       @close="closeMobileSidebar"
+      @logout="handleLogout"
     />
     
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Desktop Header -->
-      <Header class="hidden lg:block" @logout="handleLogout" />
+      <Header class="hidden lg:block" />
       
       <main class="flex-1 overflow-y-auto pt-14 lg:pt-0">
         <div v-if="currentPage === 'dashboard'" class="p-4 md:p-6">

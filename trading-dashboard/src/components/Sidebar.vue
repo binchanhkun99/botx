@@ -7,7 +7,7 @@ defineProps<{
   isMobileOpen: boolean
 }>()
 
-const emit = defineEmits(['menu-change', 'close'])
+const emit = defineEmits(['menu-change', 'close', 'logout'])
 
 const { t } = useI18n()
 const activeMenu = ref('dashboard')
@@ -117,7 +117,10 @@ const handleMenuClick = (menuId: string) => {
         <p class="text-xs text-gray-500">{{ t('sidebar.tradesThisMonth', { count: 932 }) }}</p>
       </div>
 
-      <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-dark-lighter hover:text-white transition-all">
+      <button 
+        @click="emit('logout')"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-dark-lighter hover:text-red-400 transition-all"
+      >
         <LogOut class="w-5 h-5" />
         <span class="text-sm font-medium">{{ t('common.logout') }}</span>
       </button>
