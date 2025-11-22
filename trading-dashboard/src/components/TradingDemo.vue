@@ -45,6 +45,15 @@ const getIntervalsFromRange = (range: string): { intervals: number, isHourly: bo
   }
 }
 
+const aiLogos = {
+  'GPT': '🤖',
+  'Claude': '🧠',
+  'Deepseek': '🔮',
+  'Gemini': '💎',
+  'Qwen': '⚡',
+  'Grok': '🚀'
+}
+
 const chartSeries = computed(() => {
   const { intervals, isHourly } = getIntervalsFromRange(timeRange.value)
   
@@ -113,12 +122,20 @@ const chartOptions = computed(() => ({
       const seriesIndex = opts.seriesIndex
       const dataPointIndex = opts.dataPointIndex
       const seriesData = chartSeries.value[seriesIndex].data
+      const aiName = chartSeries.value[seriesIndex].name
       
-      if (dataPointIndex === seriesData.length - 1) {
-        const aiName = chartSeries.value[seriesIndex].name
-        const formattedVal = val >= 0 ? `+$${val.toLocaleString()}` : `-$${Math.abs(val).toLocaleString()}`
-        return `${aiName}\n${formattedVal}`
+      // Label ở đầu đường - hiển thị logo + tên AI
+      if (dataPointIndex === 0) {
+        const logo = aiLogos[aiName as keyof typeof aiLogos] || '🤖'
+        return `${logo} ${aiName}`
       }
+      
+      // Label ở cuối đường - hiển thị giá trị PnL
+      if (dataPointIndex === seriesData.length - 1) {
+        const formattedVal = val >= 0 ? `+$${val.toLocaleString()}` : `-$${Math.abs(val).toLocaleString()}`
+        return formattedVal
+      }
+      
       return ''
     },
     offsetY: -10,
