@@ -24,6 +24,7 @@ export default {
     dashboard: 'Dashboard',
     botConfig: 'Bot Configuration',
     tradeHistory: 'Trade History',
+    tradingDemo: 'Trading Demo',
     liquidityChart: 'Liquidity Chart',
     economicCalendar: 'Economic Calendar',
     tradeLog: 'Trade Log',
@@ -226,5 +227,21 @@ export default {
     edit: 'Edit',
     long: 'Long',
     short: 'Short',
+  },
+
+  // Trading Demo
+  tradingDemo: {
+    title: 'AI Models Performance Comparison',
+    subtitle: 'Track and analyze trading performance of AI models',
+    chartTitle: 'PnL Over Time',
+    chartSubtitle: 'Real-time updates',
+    leaderboard: 'Leaderboard',
+    performanceTable: 'Performance Details',
+    rank: 'Rank',
+    aiModel: 'AI Model',
+    pnl: 'PnL',
+    change: 'Change',
+    performance: 'Performance',
+    all: 'All',
   },
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutDashboard, Bot, History, BarChart3, Calendar, ListChecks, LogOut } from 'lucide-vue-next'
+import { LayoutDashboard, Bot, History, TrendingUp, BarChart3, Calendar, ListChecks, LogOut } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -11,6 +11,7 @@ const menuItems = [
   { id: 'dashboard', icon: LayoutDashboard, labelKey: 'sidebar.dashboard' },
   { id: 'bot-config', icon: Bot, labelKey: 'sidebar.botConfig' },
   { id: 'trade-history', icon: History, labelKey: 'sidebar.tradeHistory' },
+  { id: 'trading-demo', icon: TrendingUp, labelKey: 'sidebar.tradingDemo' },
   { id: 'liquidity', icon: BarChart3, labelKey: 'sidebar.liquidityChart' },
   { id: 'calendar', icon: Calendar, labelKey: 'sidebar.economicCalendar' },
   { id: 'trade-log', icon: ListChecks, labelKey: 'sidebar.tradeLog' },

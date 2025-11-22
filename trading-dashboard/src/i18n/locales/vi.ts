@@ -24,6 +24,7 @@ export default {
     dashboard: 'Dashboard',
     botConfig: 'Cấu hình Bot',
     tradeHistory: 'Lịch sử Trade',
+    tradingDemo: 'Trading Demo',
     liquidityChart: 'Biểu đồ Liquid',
     economicCalendar: 'Lịch kinh tế',
     tradeLog: 'Lịch sử Trade',
@@ -226,5 +227,21 @@ export default {
     edit: 'Sửa',
     long: 'Long',
     short: 'Short',
+  },
+
+  // Trading Demo
+  tradingDemo: {
+    title: 'So sánh hiệu suất AI Models',
+    subtitle: 'Theo dõi và phân tích hiệu suất trading của các AI models',
+    chartTitle: 'Biểu đồ PnL theo thời gian',
+    chartSubtitle: 'Cập nhật real-time',
+    leaderboard: 'Bảng xếp hạng',
+    performanceTable: 'Chi tiết hiệu suất',
+    rank: 'Hạng',
+    aiModel: 'AI Model',
+    pnl: 'PnL',
+    change: 'Thay đổi',
+    performance: 'Hiệu suất',
+    all: 'Tất cả',
   },
 }
