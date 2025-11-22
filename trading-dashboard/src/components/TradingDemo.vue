@@ -98,9 +98,16 @@ const chartOptions = computed(() => ({
     enabledOnSeries: [0, 1, 2, 3, 4, 5],
     background: {
       enabled: true,
-      borderRadius: 6,
-      padding: 6,
-      opacity: 0.9
+      borderRadius: 8,
+      padding: 10,
+      opacity: 0.95,
+      dropShadow: {
+        enabled: true,
+        top: 2,
+        left: 2,
+        blur: 4,
+        opacity: 0.3
+      }
     },
     formatter: (val: number, opts: any) => {
       const seriesIndex = opts.seriesIndex
@@ -109,14 +116,18 @@ const chartOptions = computed(() => ({
       
       if (dataPointIndex === seriesData.length - 1) {
         const aiName = chartSeries.value[seriesIndex].name
-        return `${aiName}: $${val.toLocaleString()}`
+        const formattedVal = val >= 0 ? `+$${val.toLocaleString()}` : `-$${Math.abs(val).toLocaleString()}`
+        return `${aiName}\n${formattedVal}`
       }
       return ''
     },
-    offsetY: -5,
+    offsetY: -10,
+    offsetX: 8,
+    textAnchor: 'start',
+    distributed: false,
     style: {
-      fontSize: '11px',
-      fontWeight: 600,
+      fontSize: '13px',
+      fontWeight: 700,
       colors: ['#fff']
     }
   },
