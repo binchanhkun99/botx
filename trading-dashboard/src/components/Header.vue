@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { User, LogOut, Globe, Check } from 'lucide-vue-next'
+import { User, LogOut, Globe, Check, Sun, Moon } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import { changeLocale } from '../i18n'
+import { useDarkMode } from '../composables/useDarkMode'
 
 const { t, locale } = useI18n()
 const emit = defineEmits(['logout'])
+const { isDark, toggleDarkMode } = useDarkMode()
 
 const showDropdown = ref(false)
 const showLanguageMenu = ref(false)
@@ -63,6 +65,16 @@ onUnmounted(() => {
           <p class="text-xs text-gray-400">{{ t('header.balance') }}: $7,460.80</p>
           <p class="text-xs text-green-profit">{{ t('header.pnlToday') }}: +$7,263.60</p>
         </div>
+
+        <!-- Dark Mode Toggle -->
+        <button
+          @click="toggleDarkMode"
+          class="p-2 hover:bg-dark-lighter rounded-lg transition-colors"
+          :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        >
+          <Sun v-if="isDark" class="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+          <Moon v-else class="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+        </button>
         
         <!-- User Menu -->
         <div class="relative user-menu">
