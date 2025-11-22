@@ -85,148 +85,150 @@ const chartSeries = computed(() => {
   ]
 })
 
+// Tạo annotations cho labels nằm bên phải chart
+const chartAnnotations = computed(() => {
+  const colors = ['#3B82F6', '#8B5CF6', '#F97316', '#10B981', '#EC4899', '#F59E0B']
+  
+  // Tìm max timestamp từ tất cả series để labels nằm ở right edge
+  const maxTimestamp = Math.max(...chartSeries.value.map(series => 
+    series.data[series.data.length - 1].x
+  ))
+  
+  return {
+    points: chartSeries.value.map((series, index) => {
+      const lastDataPoint = series.data[series.data.length - 1]
+      const logo = aiLogos[series.name as keyof typeof aiLogos] || '🤖'
+      
+      return {
+        x: maxTimestamp,
+        y: lastDataPoint.y,
+        marker: {
+          size: 0
+        },
+        label: {
+          borderColor: colors[index],
+          offsetX: 5,
+          offsetY: 0,
+          textAnchor: 'start',
+          style: {
+            color: '#fff',
+            background: colors[index],
+            fontSize: '13px',
+            fontWeight: 700,
+            padding: {
+              left: 10,
+              right: 10,
+              top: 6,
+              bottom: 6
+            }
+          },
+          text: `${logo} ${series.name}`
+        }
+      }
+    })
+  }
+})
+
 const chartOptions = computed(() => ({
-  chart: {
-    type: 'line',
-    height: 500,
-    background: 'transparent',
-    toolbar: {
-      show: false
+    chart: {
+      type: 'line',
+      height: 500,
+      background: 'transparent',
+      toolbar: {
+        show: false
+      },
+      zoom: {
+        enabled: false
+      }
     },
-    zoom: {
+    colors: ['#3B82F6', '#8B5CF6', '#F97316', '#10B981', '#EC4899', '#F59E0B'],
+    stroke: {
+      width: 3,
+      curve: 'smooth'
+    },
+    dataLabels: {
       enabled: false
-    }
-  },
-  colors: ['#3B82F6', '#8B5CF6', '#F97316', '#10B981', '#EC4899', '#F59E0B'],
-  stroke: {
-    width: 3,
-    curve: 'smooth'
-  },
-  dataLabels: {
-    enabled: true,
-    enabledOnSeries: [0, 1, 2, 3, 4, 5],
-    background: {
-      enabled: true,
-      borderRadius: 8,
-      padding: 10,
-      opacity: 0.95,
-      dropShadow: {
-        enabled: true,
-        top: 2,
-        left: 2,
-        blur: 4,
-        opacity: 0.3
+    },
+    annotations: chartAnnotations.value,
+    grid: {
+      borderColor: '#374151',
+      strokeDashArray: 4,
+      xaxis: {
+        lines: {
+          show: true
+        }
+      },
+      yaxis: {
+        lines: {
+          show: true
+        }
       }
     },
-    formatter: (val: number, opts: any) => {
-      const seriesIndex = opts.seriesIndex
-      const dataPointIndex = opts.dataPointIndex
-      const seriesData = chartSeries.value[seriesIndex].data
-      const aiName = chartSeries.value[seriesIndex].name
-      
-      // Label ở đầu đường - hiển thị logo + tên AI
-      if (dataPointIndex === 0) {
-        const logo = aiLogos[aiName as keyof typeof aiLogos] || '🤖'
-        return `${logo} ${aiName}`
-      }
-      
-      // Label ở cuối đường - hiển thị giá trị PnL
-      if (dataPointIndex === seriesData.length - 1) {
-        const formattedVal = val >= 0 ? `+$${val.toLocaleString()}` : `-$${Math.abs(val).toLocaleString()}`
-        return formattedVal
-      }
-      
-      return ''
-    },
-    offsetY: -10,
-    offsetX: 8,
-    textAnchor: 'start',
-    distributed: false,
-    style: {
-      fontSize: '13px',
-      fontWeight: 700,
-      colors: ['#fff']
-    }
-  },
-  grid: {
-    borderColor: '#374151',
-    strokeDashArray: 4,
     xaxis: {
-      lines: {
-        show: true
+      type: 'datetime',
+      labels: {
+        style: {
+          colors: '#9CA3AF',
+          fontSize: '12px'
+        },
+        datetimeFormatter: {
+          year: 'yyyy',
+          month: 'MMM \'yy',
+          day: 'dd MMM',
+          hour: 'HH:mm'
+        }
+      },
+      axisBorder: {
+        color: '#374151'
+      },
+      axisTicks: {
+        color: '#374151'
       }
     },
     yaxis: {
-      lines: {
-        show: true
-      }
-    }
-  },
-  xaxis: {
-    type: 'datetime',
-    labels: {
-      style: {
-        colors: '#9CA3AF',
-        fontSize: '12px'
-      },
-      datetimeFormatter: {
-        year: 'yyyy',
-        month: 'MMM \'yy',
-        day: 'dd MMM',
-        hour: 'HH:mm'
+      labels: {
+        style: {
+          colors: '#9CA3AF',
+          fontSize: '12px'
+        },
+        formatter: (val: number) => `$${val.toLocaleString()}`
       }
     },
-    axisBorder: {
-      color: '#374151'
-    },
-    axisTicks: {
-      color: '#374151'
-    }
-  },
-  yaxis: {
-    labels: {
-      style: {
-        colors: '#9CA3AF',
-        fontSize: '12px'
+    legend: {
+      show: true,
+      position: 'top',
+      horizontalAlign: 'right',
+      labels: {
+        colors: '#9CA3AF'
       },
-      formatter: (val: number) => `$${val.toLocaleString()}`
-    }
-  },
-  legend: {
-    show: true,
-    position: 'top',
-    horizontalAlign: 'right',
-    labels: {
-      colors: '#9CA3AF'
+      markers: {
+        width: 12,
+        height: 12,
+        radius: 6
+      },
+      itemMargin: {
+        horizontal: 12,
+        vertical: 5
+      }
+    },
+    tooltip: {
+      theme: 'dark',
+      x: {
+        format: 'dd MMM yyyy HH:mm'
+      },
+      y: {
+        formatter: (val: number) => `$${val.toLocaleString()}`
+      },
+      style: {
+        fontSize: '12px'
+      }
     },
     markers: {
-      width: 12,
-      height: 12,
-      radius: 6
-    },
-    itemMargin: {
-      horizontal: 12,
-      vertical: 5
+      size: 0,
+      hover: {
+        size: 6
+      }
     }
-  },
-  tooltip: {
-    theme: 'dark',
-    x: {
-      format: 'dd MMM yyyy HH:mm'
-    },
-    y: {
-      formatter: (val: number) => `$${val.toLocaleString()}`
-    },
-    style: {
-      fontSize: '12px'
-    }
-  },
-  markers: {
-    size: 0,
-    hover: {
-      size: 6
-    }
-  }
 }))
 
 const aiStats = computed(() => {

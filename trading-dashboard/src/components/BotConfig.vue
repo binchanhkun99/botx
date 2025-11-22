@@ -16,7 +16,6 @@ const strategy = ref('scalping-dca')
   <div class="bg-dark-card rounded-xl p-6 border border-dark-lighter">
     <div class="flex items-center justify-between mb-6">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
-        <span class="text-primary">🤖</span>
         {{ t('botPanel.title') }}
       </h3>
     </div>

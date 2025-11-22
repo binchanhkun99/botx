@@ -97,7 +97,6 @@ const chartOptions = ref({
   <div class="bg-dark-card rounded-xl p-6 border border-dark-lighter">
     <div class="flex items-center justify-between mb-4">
       <h3 class="text-lg font-bold text-white flex items-center gap-2">
-        <span class="text-primary">📈</span>
         {{ t('portfolio.performance') }}
       </h3>
       <div class="flex gap-2">
