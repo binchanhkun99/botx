@@ -34,8 +34,12 @@ const handleLogout = () => {
     <div class="flex-1 flex flex-col overflow-hidden">
       <Header @logout="handleLogout" />
       <main class="flex-1 overflow-y-auto">
-        <Dashboard v-if="currentPage === 'dashboard'" />
-        <BotConfigPage v-else-if="currentPage === 'bot-config'" />
+        <div v-if="currentPage === 'dashboard'" class="p-6">
+          <Dashboard />
+        </div>
+        <div v-else-if="currentPage === 'bot-config'" class="p-6">
+          <BotConfigPage />
+        </div>
         <TradingDemo v-else-if="currentPage === 'trading-demo'" />
         <div v-else class="p-6">
           <div class="bg-dark-card rounded-xl p-12 border border-dark-lighter text-center">
