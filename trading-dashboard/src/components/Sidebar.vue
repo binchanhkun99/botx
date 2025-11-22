@@ -21,7 +21,6 @@ const menuItems = [
   { id: 'trading-demo', icon: TrendingUp, labelKey: 'sidebar.tradingDemo' },
   { id: 'liquidity', icon: BarChart3, labelKey: 'sidebar.liquidityChart' },
   { id: 'calendar', icon: Calendar, labelKey: 'sidebar.economicCalendar' },
-  { id: 'trade-log', icon: ListChecks, labelKey: 'sidebar.tradeLog' },
 ]
 
 const handleMenuClick = (menuId: string) => {

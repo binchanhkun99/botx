@@ -59,41 +59,41 @@ const getStatusColor = (status: string) => {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="bg-dark-card border border-dark-lighter rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+        <div class="bg-dark-card border border-dark-lighter rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-9 h-9 bg-gradient-primary rounded-lg flex items-center justify-center">
               <Wallet class="w-5 h-5 text-white" />
             </div>
             <p class="text-gray-400 text-sm">{{ t('wallet.availableBalance') }}</p>
           </div>
-          <p class="text-3xl font-bold text-white">${{ availableBalance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</p>
+          <p class="text-2xl font-bold text-white">${{ availableBalance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</p>
         </div>
 
-        <div class="bg-dark-card border border-dark-lighter rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+        <div class="bg-dark-card border border-dark-lighter rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-9 h-9 bg-blue-500/20 rounded-lg flex items-center justify-center">
               <Wallet class="w-5 h-5 text-blue-400" />
             </div>
             <p class="text-gray-400 text-sm">{{ t('wallet.totalBalance') }}</p>
           </div>
-          <p class="text-3xl font-bold text-white">${{ totalBalance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</p>
+          <p class="text-2xl font-bold text-white">${{ totalBalance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</p>
         </div>
 
-        <div class="bg-dark-card border border-dark-lighter rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+        <div class="bg-dark-card border border-dark-lighter rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-9 h-9 bg-purple-500/20 rounded-lg flex items-center justify-center">
               <Wallet class="w-5 h-5 text-purple-400" />
             </div>
             <p class="text-gray-400 text-sm">{{ t('wallet.lockedBalance') }}</p>
           </div>
-          <p class="text-3xl font-bold text-white">${{ lockedBalance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</p>
+          <p class="text-2xl font-bold text-white">${{ lockedBalance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         <button
           @click="showDepositModal = true"
-          class="bg-gradient-primary hover:opacity-90 text-white px-6 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-3 shadow-lg"
+          class="bg-gradient-primary hover:opacity-90 text-white px-5 py-3 rounded-xl font-medium transition-all flex items-center justify-center gap-2 shadow-lg"
         >
           <ArrowDownToLine class="w-5 h-5" />
           {{ t('wallet.deposit') }}
@@ -101,7 +101,7 @@ const getStatusColor = (status: string) => {
 
         <button
           @click="showWithdrawModal = true"
-          class="bg-dark-lighter hover:bg-dark-lighter/80 text-white px-6 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-3 border border-dark-lighter"
+          class="bg-dark-lighter hover:bg-dark-lighter/80 text-white px-5 py-3 rounded-xl font-medium transition-all flex items-center justify-center gap-2 border border-dark-lighter"
         >
           <ArrowUpFromLine class="w-5 h-5" />
           {{ t('wallet.withdraw') }}
