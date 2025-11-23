@@ -163,6 +163,7 @@ export default {
   botPanel: {
     title: "Cấu hình Bot",
     botStatus: "Trạng thái Bot",
+    start: "Bắt đầu",
     running: "Đang chạy",
     paused: "Tạm dừng",
     tradingStrategy: "Phương pháp Trade",

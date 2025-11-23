@@ -27,6 +27,27 @@ const handlePaymentSuccess = () => {
   hasPaidBotFee.value = true
   botRunning.value = true
 }
+
+const getButtonText = () => {
+  if (!hasPaidBotFee.value && !botRunning.value) return t('botPanel.start')
+  if (botRunning.value) return t('botPanel.running')
+  return t('botPanel.paused')
+}
+
+const getButtonClass = () => {
+  if (!hasPaidBotFee.value && !botRunning.value) {
+    return 'bg-gradient-primary hover:opacity-90 text-white'
+  }
+  if (botRunning.value) {
+    return 'bg-green-profit hover:bg-green-600 text-white'
+  }
+  return 'bg-red-500 hover:bg-red-600 text-white'
+}
+
+const getButtonIcon = () => {
+  if (botRunning.value) return Pause
+  return Play
+}
 </script>
 
 <template>
@@ -44,13 +65,11 @@ const handlePaymentSuccess = () => {
           @click="toggleBot"
           :class="[
             'flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition-all w-full font-medium',
-            botRunning 
-              ? 'bg-green-profit hover:bg-green-600 text-white' 
-              : 'bg-red-500 hover:bg-red-600 text-white'
+            getButtonClass()
           ]"
         >
-          <component :is="botRunning ? Play : Pause" class="w-5 h-5" />
-          <span>{{ botRunning ? t('botPanel.running') : t('botPanel.paused') }}</span>
+          <component :is="getButtonIcon()" class="w-5 h-5" />
+          <span>{{ getButtonText() }}</span>
         </button>
       </div>
 

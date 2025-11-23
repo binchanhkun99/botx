@@ -160,6 +160,7 @@ export default {
   botPanel: {
     title: 'Bot Configuration',
     botStatus: 'Bot Status',
+    start: 'Start',
     running: 'Running',
     paused: 'Paused',
     tradingStrategy: 'Trading Strategy',
