@@ -298,4 +298,19 @@ export default {
     depositSuccess: "Địa chỉ nạp tiền đã được tạo!",
     withdrawSuccess: "Yêu cầu rút tiền đã được gửi!",
   },
+
+  // Payment Modal
+  payment: {
+    title: "Kích hoạt Bot Trading",
+    subtitle: "Thanh toán một lần để sử dụng bot trading vĩnh viễn",
+    serviceName: "Dịch vụ",
+    botActivation: "Kích hoạt Bot Trading",
+    duration: "Thời hạn",
+    lifetime: "Vĩnh viễn",
+    total: "Tổng cộng",
+    payNow: "Thanh toán ngay",
+    processing: "Đang xử lý...",
+    cancel: "Hủy bỏ",
+    disclaimer: "Đây là giao dịch demo. Không có khoản thanh toán thực tế nào được thực hiện.",
+  },
 };

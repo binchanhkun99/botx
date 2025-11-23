@@ -2,14 +2,31 @@
 import { Play, Pause } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import PaymentModal from './PaymentModal.vue'
 
 const { t } = useI18n()
 
-const botRunning = ref(true)
+const botRunning = ref(false)
+const hasPaidBotFee = ref(false)
+const showPaymentModal = ref(false)
 const riskLevel = ref('medium')
 const edgeCutting = ref(true)
 const volumeIncrease = ref(true)
 const strategy = ref('scalping-dca')
+
+const toggleBot = () => {
+  if (!botRunning.value && !hasPaidBotFee.value) {
+    showPaymentModal.value = true
+    return
+  }
+  
+  botRunning.value = !botRunning.value
+}
+
+const handlePaymentSuccess = () => {
+  hasPaidBotFee.value = true
+  botRunning.value = true
+}
 </script>
 
 <template>
@@ -23,28 +40,18 @@ const strategy = ref('scalping-dca')
     <div class="space-y-6">
       <div>
         <p class="text-sm text-gray-400 mb-3">{{ t('botPanel.botStatus') }}</p>
-        <div class="flex gap-3">
-          <button
-            @click="botRunning = true"
-            :class="[
-              'flex items-center gap-2 px-4 py-2 rounded-lg transition-all flex-1',
-              botRunning ? 'bg-green-profit text-white' : 'bg-dark-lighter text-gray-400'
-            ]"
-          >
-            <Play class="w-4 h-4" />
-            <span class="text-sm font-medium">{{ t('botPanel.running') }}</span>
-          </button>
-          <button
-            @click="botRunning = false"
-            :class="[
-              'flex items-center gap-2 px-4 py-2 rounded-lg transition-all flex-1',
-              !botRunning ? 'bg-gray-600 text-white' : 'bg-dark-lighter text-gray-400'
-            ]"
-          >
-            <Pause class="w-4 h-4" />
-            <span class="text-sm font-medium">{{ t('botPanel.paused') }}</span>
-          </button>
-        </div>
+        <button
+          @click="toggleBot"
+          :class="[
+            'flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition-all w-full font-medium',
+            botRunning 
+              ? 'bg-green-profit hover:bg-green-600 text-white' 
+              : 'bg-red-500 hover:bg-red-600 text-white'
+          ]"
+        >
+          <component :is="botRunning ? Play : Pause" class="w-5 h-5" />
+          <span>{{ botRunning ? t('botPanel.running') : t('botPanel.paused') }}</span>
+        </button>
       </div>
 
       <div>
@@ -136,5 +143,11 @@ const strategy = ref('scalping-dca')
         </label>
       </div>
     </div>
+
+    <PaymentModal 
+      v-if="showPaymentModal"
+      @close="showPaymentModal = false"
+      @payment-success="handlePaymentSuccess"
+    />
   </div>
 </template>

@@ -295,4 +295,19 @@ export default {
     depositSuccess: 'Deposit address created!',
     withdrawSuccess: 'Withdrawal request submitted!',
   },
+
+  // Payment Modal
+  payment: {
+    title: 'Activate Trading Bot',
+    subtitle: 'One-time payment for lifetime bot trading access',
+    serviceName: 'Service',
+    botActivation: 'Trading Bot Activation',
+    duration: 'Duration',
+    lifetime: 'Lifetime',
+    total: 'Total',
+    payNow: 'Pay Now',
+    processing: 'Processing...',
+    cancel: 'Cancel',
+    disclaimer: 'This is a demo transaction. No actual payment will be processed.',
+  },
 }
